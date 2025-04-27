@@ -199,3 +199,8 @@ playlistButtons.forEach((button) => {
     }
   });
 });
+
+// 点击 "Begin Studying" 跳转到 study.html
+document.getElementById("beginStudyButton").addEventListener("click", () => {
+  window.location.href = "study.html"; // 跳转到新的页面
+});
