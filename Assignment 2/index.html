@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relax & Study Music Player</title>
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Study & Relax Music</h1>
+      <p>Your calm corner to focus, unwind, and relax</p>
+    </header>
+
+    <main>
+      <section class="media-player">
+        <video id="videoPlayer" autoplay muted loop playsinline>
+          <source src="normal.mp4" type="video/mp4" />
+        </video>
+        <div class="custom-controls">
+          <button id="playPauseBtn">Play/Pause</button>
+          <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5" />
+        </div>
+      </section>
+
+      <section class="extra-features">
+        <div class="playlist">
+            <h2>Suggested Tracks</h2>
+            <ul>
+              <li><button data-sounds="rain,forest">Peace</button></li>
+              <li><button data-sounds="cafe,library">Water</button></li>
+              <li><button data-sounds="subway,fire">Relex</button></li>
+              <li><button data-sounds="keyboard,ocean">Sleepy</button></li>
+            </ul>
+          </div>
+          
+
+        <div class="pomodoro">
+          <h2>Pomodoro Timer</h2>
+          <div class="pomodoro-timer" id="timer">25:00</div>
+          <div>
+            <button id="startPauseBtn">Start</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+        </div>
+      </section>
+
+        <div class="sound-cards" id="soundCards">
+          <section id="bg-sound-module">
+            <h2>Preference</h2>
+            <div class="category-buttons">
+              <button data-filter="all" class="active">All</button>
+              <button data-filter="nature">Nature</button>
+              <button data-filter="places">Arena</button>
+              <button data-filter="items">Consciousness</button>
+            </div>
+          
+            <div class="sound-cards" id="soundCards">
+              <!-- Places（3） -->
+              <div class="sound-card" data-category="places" data-sound="cafe">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">Laboratory</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="Arena1.mp4" loop></audio>
+              </div>
+          
+              <div class="sound-card" data-category="places" data-sound="library">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">Aquarium1</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="Arena2.mp4" loop></audio>
+              </div>
+          
+              <div class="sound-card" data-category="places" data-sound="subway">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">Aquarium2</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="Arena3.mp4" loop></audio>
+              </div>
+          
+              <!-- Nature（3） -->
+              <div class="sound-card" data-category="nature" data-sound="rain">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">雨声</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="main/rain.mp3" loop></audio>
+              </div>
+          
+              <div class="sound-card" data-category="nature" data-sound="forest">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">森林</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="main/forest.mp3" loop></audio>
+              </div>
+          
+              <div class="sound-card" data-category="nature" data-sound="ocean">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">海浪</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="main/ocean.mp3" loop></audio>
+              </div>
+          
+              <!-- Items（2个） -->
+              <div class="sound-card" data-category="items" data-sound="keyboard">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">键盘</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="main/keyboard.mp3" loop></audio>
+              </div>
+          
+              <div class="sound-card" data-category="items" data-sound="fire">
+                <div class="sound-card-header">
+                  <button class="play-btn">▶</button>
+                  <span class="sound-name">火堆</span>
+                </div>
+                <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5" />
+                <audio src="main/fire.mp3" loop></audio>
+              </div>
+            </div>
+          </section>
+          
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Designed for focused minds & calm hearts – 2025</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
