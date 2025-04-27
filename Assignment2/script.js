@@ -102,65 +102,34 @@ filterButtons.forEach((button) => {
   });
 });
 
-// Pomodoro
-const timerDisplay = document.getElementById("timer");
-const startPauseBtn = document.getElementById("startPauseBtn");
-const resetBtn = document.getElementById("resetBtn");
+// 设置番茄钟数量
+let sessionCount = 1; // 默认1
 
-let isRunning = false;
-let timeLeft = 25 * 60;
-let timerInterval;
+const sessionDisplay = document.getElementById("sessionCount");
+const increaseBtn = document.getElementById("increaseBtn");
+const confirmBtn = document.getElementById("confirmBtn");
 
-// Pomodoro timer
-function updateDisplay() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(
-    seconds
-  ).padStart(2, "0")}`;
-}
+// 点击加号，增加1
+increaseBtn.addEventListener("click", () => {
+  sessionCount++;
+  sessionDisplay.textContent = sessionCount;
+});
 
-// Pomotoro start pause
-function toggleTimer() {
-  if (isRunning) {
-    clearInterval(timerInterval);
-    startPauseBtn.textContent = "Start";
-  } else {
-    timerInterval = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        updateDisplay();
-      } else {
-        clearInterval(timerInterval);
-        isRunning = false;
-        startPauseBtn.textContent = "Start";
-        playPomodoroEndSound();
-        alert("Time's up! Take a short break!");
-      }
-    }, 1000);
-    startPauseBtn.textContent = "Pause";
+decreaseBtn.addEventListener("click", () => {
+  if (sessionCount > 1) {
+    sessionCount--;
+    sessionDisplay.textContent = sessionCount;
   }
-  isRunning = !isRunning;
-}
+});
 
-// Reset timer
-function resetTimer() {
-  clearInterval(timerInterval);
-  isRunning = false;
-  timeLeft = 25 * 60;
-  updateDisplay();
-  startPauseBtn.textContent = "Start";
-}
-
-// Pomotoro end
-function playPomodoroEndSound() {
-  const ding = new Audio("main/ding.mp3");
-  ding.play();
-}
-
-startPauseBtn.addEventListener("click", toggleTimer);
-resetBtn.addEventListener("click", resetTimer);
-updateDisplay();
+// 点击确认，把设置保存到 localStorage
+confirmBtn.addEventListener("click", () => {
+  const totalMinutes = sessionCount * 25; // 每个session是25分钟
+  localStorage.setItem("studyMinutes", totalMinutes); // 保存到localStorage
+  // 然后跳转到背景音选择页面
+  document.getElementById("timerScreen").classList.remove("active");
+  document.getElementById("bgMusicScreen").classList.add("active");
+});
 
 // Playlist
 const playlistButtons = document.querySelectorAll(".playlist button");

@@ -19,12 +19,12 @@ header h1 {
 
 header p {
   font-size: 1.2em;
-  color: #5a6a85;
+  color: #8095bb;
 }
 
 /* 媒体播放器 */
 .media-player {
-  background: #fff;
+  background: #e6efff;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -81,25 +81,36 @@ video {
   margin-bottom: 10px;
 }
 
-.playlist button {
-  display: block;
-  margin: 10px auto;
-  padding: 8px 16px;
-  background-color: #2a3f5f;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.playlist ul {
+  display: flex; /* 横向排列 */
+  flex-wrap: wrap; /* 超出时换行 */
+  justify-content: center; /* 水平居中 */
+  gap: 20px; /* 按钮之间的空隙 */
+  padding: 0;
+  margin: 0;
+  list-style: none; /* 去掉ul自带的点 */
 }
 
-.pomodoro {
+.playlist button {
+  font-size: 1.1rem;
+  margin-top: 15px;
+  padding: 20px 40px;
+  background-color: #f7daff;
+  color: #5861df;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* .pomodoro {
   flex: 3;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
   background: #e8fff1;
-}
+} */
 
 .pomodoro h2 {
   font-size: 1.5em;
@@ -107,22 +118,73 @@ video {
   color: #2f6f4e;
 }
 
-.pomodoro-timer {
-  font-size: 3em;
-  font-weight: bold;
-  margin: 20px 0;
-  color: #1a64e3;
+.pomodoro-setting {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
-.pomodoro button {
+#sessionCount {
+  font-size: 3rem;
+  color: #5861df;
+  background-color: #f7daff;
   padding: 10px 20px;
-  margin: 0 10px;
-  font-size: 1em;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 161, 161, 0.3);
+}
+
+#increaseBtn:hover,
+#confirmBtn:hover {
+  background-color: #f7f7f7;
+}
+
+#confirmBtn {
+  padding: 10px;
+  background-color: #f7daff;
+  color: #0224d0;
+  font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  background-color: #4caf50;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#increaseBtn,
+#decreaseBtn {
+  padding: 2px;
+  background-color: #f7daff;
+  color: #0224d0;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#increaseBtn img,
+#decreaseBtn img {
+  width: 30px;
+  height: 30px;
+}
+
+#increaseBtn:hover,
+#decreaseBtn:hover,
+#confirmBtn:hover {
+  background-color: #ffffff;
+}
+
+.soundcards {
+  background: #e6efff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
 }
 
 /* 背景音模块 */
@@ -136,7 +198,7 @@ video {
 }
 
 .category-buttons button {
-  background-color: #eee;
+  background-color: #ffffff;
   border: none;
   padding: 8px 16px;
   margin: 0 5px;
@@ -146,12 +208,12 @@ video {
 }
 
 .category-buttons button.active {
-  background-color: #ccc;
+  background-color: #b5c3eb;
   font-weight: bold;
 }
 
 .category-buttons button:hover {
-  background-color: #ddd;
+  background-color: #b5c3eb;
 }
 
 /* 背景音卡片区域 */
@@ -160,6 +222,7 @@ video {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
   justify-items: center;
+  margin-top: 40px;
 }
 
 .sound-cards {
@@ -171,8 +234,8 @@ video {
 }
 
 .sound-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background-color: #f7daff;
+  border: 2px solid #b5c3eb;
   border-radius: 6px;
   padding: 10px;
   width: 180px; /* 每张卡片固定宽度 */

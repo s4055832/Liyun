@@ -24,3 +24,7 @@ const countdown = setInterval(() => {
     alert("Time's up! Great job!");
   }
 }, 1000);
+
+document.getElementById("backButton").addEventListener("click", () => {
+  window.location.href = "index.html"; // 点击返回首页
+});
