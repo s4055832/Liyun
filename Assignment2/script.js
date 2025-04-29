@@ -169,6 +169,23 @@ playlistButtons.forEach((button) => {
   });
 });
 
+document.getElementById("confirmBtn1").addEventListener("click", () => {
+  const playlistButtons = document.querySelectorAll(".playlist button");
+  let selectedSounds = [];
+
+  playlistButtons.forEach((button) => {
+    if (button.classList.contains("selected")) {
+      // 这里看你有没有设置selected状态
+      const sounds = button.getAttribute("data-sounds");
+      selectedSounds.push(...sounds.split(",")); // 拆分成数组
+    }
+  });
+
+  localStorage.setItem("selectedSounds", JSON.stringify(selectedSounds)); // 保存到localStorage
+});
+
+button.classList.toggle("selected");
+
 // 点击 "Begin Studying" 跳转到 study.html
 document.getElementById("beginStudyButton").addEventListener("click", () => {
   window.location.href = "study.html"; // 跳转到新的页面

@@ -8,19 +8,21 @@
     <link rel="stylesheet" href="study.css" />
   </head>
   <body>
-    <div id="backButton">
-      <img src="https://img.icons8.com/stickers/100/back.png" alt="Back" />
-    </div>
+    <div id="studyContainer">
+      <div id="backButton">
+        <img src="https://img.icons8.com/stickers/100/back.png" alt="Back" />
+      </div>
 
-    <div class="study-container">
       <video id="studyVideo" autoplay muted loop playsinline>
         <source src="normal.mp4" type="video/mp4" />
-        Your browser does not support HTML5 video.
       </video>
 
       <div id="studyTimer">25:00</div>
+      <button id="startButton">Start</button>
+      <div id="pausePlayControl" class="hidden">
+        <button id="pausePlayBtn">Pause</button>
+      </div>
     </div>
-
     <script src="study.js"></script>
   </body>
 </html>
