@@ -3,16 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const backBtn = document.getElementById("backButton");
   const video = document.getElementById("studyVideo");
   const timerDisplay = document.getElementById("studyTimer");
-  const startBtn = document.getElementById("startButton");
-  const pauseControl = document.getElementById("pausePlayControl");
-  const pausePlayBtn = document.getElementById("pausePlayBtn");
+  const playControl = document.getElementById("PlayControl");
+  const playBtn = document.getElementById("PlayBtn");
 
-  // 读取番茄钟次数（没设过就默认为 1）
+  backBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
+
+  // 读取番茄钟次数
   const storedCount = parseInt(localStorage.getItem("pomodoroCount"), 10);
   const sessions = isNaN(storedCount) || storedCount < 1 ? 1 : storedCount;
   let totalSeconds = sessions * 25 * 60;
 
-  // 读取选中的背景音
+  // 准备背景音列表
   const ambientAudios = [];
   const storedSounds = JSON.parse(
     localStorage.getItem("selectedSounds") || "[]"
@@ -25,9 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   let timerInterval = null;
-  let isPaused = true;
+  let isCounting = false;
 
-  // 格式化 MM:SS
   function formatTime(sec) {
     const m = Math.floor(sec / 60)
       .toString()
@@ -39,56 +41,33 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateDisplay() {
     timerDisplay.textContent = formatTime(totalSeconds);
   }
+  updateDisplay();
 
-  function startCountdown() {
-    isPaused = false;
-    timerInterval = setInterval(() => {
-      if (!isPaused && totalSeconds > 0) {
-        totalSeconds--;
-        updateDisplay();
-      }
-      if (totalSeconds === 0) {
-        clearInterval(timerInterval);
-      }
-    }, 1000);
-  }
+  // 显示控制按钮
+  playControl.classList.remove("hidden");
 
-  // 返回首页
-  backBtn.addEventListener("click", () => {
-    window.location.href = "index.html";
-  });
-
-  // 开始按钮：隐藏自己、启动视频、倒计时 & 播放所有背景音
-  startBtn.addEventListener("click", () => {
-    startBtn.classList.add("hidden");
-    video.play();
-    ambientAudios.forEach((a) => a.play());
-    startCountdown();
-  });
-
-  // 悬停显示 / 隐藏暂停控件
-  video.addEventListener("mouseenter", () => {
-    pauseControl.classList.remove("hidden");
-  });
-  video.addEventListener("mouseleave", () => {
-    pauseControl.classList.add("hidden");
-  });
-
-  // 暂停 / 继续：同时控制视频和背景音
-  pausePlayBtn.addEventListener("click", () => {
-    if (video.paused) {
+  playBtn.addEventListener("click", () => {
+    if (!isCounting) {
+      // —— Start ——
+      isCounting = true;
+      playBtn.textContent = "Pause";
       video.play();
       ambientAudios.forEach((a) => a.play());
-      isPaused = false;
-      pausePlayBtn.textContent = "Pause";
+      timerInterval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateDisplay();
+        } else {
+          clearInterval(timerInterval);
+        }
+      }, 1000);
     } else {
+      // —— Pause ——
+      isCounting = false;
+      playBtn.textContent = "Start";
       video.pause();
-      ambientAudios.forEach((a) => a.pause());
-      isPaused = true;
-      pausePlayBtn.textContent = "Play";
+      ambientAudios.forEach((a) => a.pause()); // ← 这里加上暂停所有音频
+      clearInterval(timerInterval);
     }
   });
-
-  // 初始化显示
-  updateDisplay();
 });

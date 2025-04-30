@@ -59,17 +59,34 @@ html {
   font-weight: bold;
 }
 
-#startButton,
-#pausePlayControl button {
-  font-size: 1rem;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  background: #4a90e2;
-  color: white;
-  cursor: pointer;
+/* 确保 studyContainer 是定位上下文 */
+#studyContainer {
+  position: relative;
 }
 
-#pausePlayControl {
-  margin-top: 10px;
+/* 控制按钮容器——撑满宽度方便居中 */
+#PlayControl {
+  position: absolute;
+  left: 0;
+  bottom: 40px; /* 调整垂直位置 */
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Start/Pause 切换按钮 */
+#PlayBtn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #f7daffbc;
+  color: #2a3f5f;
+  font-weight: bold;
+  border: 2px solid #b5c3eb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Oleo Script", system-ui;
+  font-size: 1rem;
+  /* 如果你想微调位置，可以加一个轻微的相对偏移 */
+  position: relative;
+  top: 0; /* 或者负值，上移一点 */
 }
