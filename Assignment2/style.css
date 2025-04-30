@@ -19,11 +19,6 @@ html {
   min-height: 100vh;
 }
 
-h1 {
-  font-family: "Oleo Script", system-ui;
-  font-size: 2rem;
-}
-
 .oleo-script-regular {
   font-family: "Oleo Script", system-ui;
   font-weight: 400;
@@ -74,14 +69,16 @@ button {
   padding: 10px 20px;
   border-radius: 6px;
   font-size: 1rem;
+  margin-top: 20px;
 }
+
 button:disabled {
   opacity: 0.6;
   cursor: default;
 }
 
 header h1 {
-  font-size: 3em;
+  font-size: 4em;
   margin-bottom: 10px;
   color: #2a3f5f;
   font-family: "Oleo Script", system-ui;
@@ -91,12 +88,13 @@ header p {
   font-size: 1em;
   color: #6a84c7;
   font-family: "Playwrite RO", cursive;
+  margin-bottom: 40px;
 }
 
 #welcomeScreen > h2,
 #welcomeScreen > p {
   font-family: "Oleo Script", system-ui;
-  margin: 20px;
+  margin-top: 20px;
   font-size: 1.5rem;
   color: #2a3f5f;
 }
@@ -143,13 +141,14 @@ header p {
   font-size: 1.1rem;
   margin-top: 15px;
   padding: 20px 40px;
-  background-color: #f7daff;
+  background-color: #f7daffbc;
   color: #2a3f5f;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
   font-family: "Playwrite RO", cursive;
+  border: 2px solid #b5c3eb;
 }
 
 /* .pomodoro {
@@ -176,7 +175,8 @@ header p {
   gap: 20px;
 }
 
-.pomodoro p {
+.pomodoro p,
+.playlist p {
   font-size: 0.8em;
   color: #6a84c7;
   font-family: "Playwrite RO", cursive;
@@ -186,7 +186,7 @@ header p {
 #sessionCount {
   font-size: 3rem;
   color: #5861df;
-  background-color: #f7daff;
+  background-color: #f7daffbc;
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(255, 161, 161, 0.3);
@@ -200,7 +200,7 @@ header p {
 
 #confirmBtn {
   padding: 10px;
-  background-color: #f7daff;
+  background-color: #f7daffbc;
   color: #2a3f5f;
   font-weight: bold;
   border: none;
@@ -210,12 +210,13 @@ header p {
   align-items: center;
   justify-content: center;
   font-family: "Oleo Script", system-ui;
+  border: 2px solid #b5c3eb;
 }
 
 #increaseBtn,
 #decreaseBtn {
   padding: 2px;
-  background-color: #f7daff;
+  background-color: #f7daffbc;
   color: #0224d0;
   font-weight: bold;
   border: none;
@@ -246,6 +247,20 @@ header p {
   margin-top: 40px;
 }
 
+.soundcards h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  font-family: "Oleo Script", system-ui;
+  color: #2a3f5f;
+}
+
+.soundcards p {
+  font-size: 0.8em;
+  color: #6a84c7;
+  font-family: "Playwrite RO", cursive;
+  line-height: 1.6;
+}
+
 /* 背景音模块 */
 #bg-sound-module {
   margin-top: 40px;
@@ -254,20 +269,22 @@ header p {
 /* 分类按钮区域 */
 .category-buttons {
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .category-buttons button {
-  background-color: #ffffff;
+  color: #bed8ff;
   border: none;
   padding: 8px 16px;
   margin: 0 5px;
   font-size: 14px;
   cursor: pointer;
   border-radius: 4px;
+  font-family: "Oleo Script", system-ui;
 }
 
 .category-buttons button.active {
-  background-color: #b5c3eb;
+  background-color: #f8f8f8;
   font-weight: bold;
 }
 
@@ -293,12 +310,34 @@ header p {
 }
 
 .sound-card {
-  background-color: #f7daff;
+  background-color: #f7daffbc;
   border: 2px solid #b5c3eb;
   border-radius: 6px;
   padding: 10px;
   width: 180px; /* 每张卡片固定宽度 */
   box-sizing: border-box; /* 让padding/border不会撑破宽度 */
+}
+
+.sound-cards span {
+  font-size: 1rem;
+  color: #2a3f5f;
+  font-weight: bold;
+  font-family: "Playwrite RO", cursive;
+}
+
+#confirmSoundsBtn {
+  padding: 10px;
+  background-color: #f7daffbc;
+  color: #2a3f5f;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-family: "Oleo Script", system-ui;
+  margin-top: 20px;
+  border: 2px solid #b5c3eb;
 }
 
 .play-btn {
@@ -326,6 +365,18 @@ header p {
 /* 隐藏类别用 */
 .hidden {
   display: none !important;
+}
+
+#successMessage > span {
+  font-size: 1.5em;
+  color: #6a84c7;
+  font-family: "Playwrite RO", cursive;
+  line-height: 1.6;
+}
+
+#beginStudyButton,
+#startButton {
+  font-family: "Oleo Script", system-ui;
 }
 
 /* 页脚 */
