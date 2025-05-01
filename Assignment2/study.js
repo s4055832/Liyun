@@ -71,3 +71,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* 隐藏 Safari/Chrome 的默认大播放按钮 */
+#studyVideo::-webkit-media-controls-start-playback-button,
+#studyVideo::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* 隐藏 Edge/IE 的大播放图标 */
+#studyVideo::-ms-clear {
+  display: none !important;
+}
+
+/* 隐藏所有浏览器可能的内建覆盖层 */
+#studyVideo::-webkit-media-controls {
+  display: none !important;
+}
+
+/* 确保视频本身可点击到自定义按钮下方 */
+#studyVideo {
+  pointer-events: none;
+}

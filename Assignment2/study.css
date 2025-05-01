@@ -9,6 +9,24 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+.oleo-script-regular {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.oleo-script-bold {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.permanent-marker-regular {
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #backButton {
   position: absolute;
   top: 20px;
@@ -57,36 +75,5 @@ html {
   color: #ffffff8d;
   font-size: 4rem; /* 字体可以适当放大一点，更有视觉冲击力 */
   font-weight: bold;
-}
-
-/* 确保 studyContainer 是定位上下文 */
-#studyContainer {
-  position: relative;
-}
-
-/* 控制按钮容器——撑满宽度方便居中 */
-#PlayControl {
-  position: absolute;
-  left: 0;
-  bottom: 40px; /* 调整垂直位置 */
-  width: 100%;
-  text-align: center;
-  z-index: 2;
-}
-
-/* Start/Pause 切换按钮 */
-#PlayBtn {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #f7daffbc;
-  color: #2a3f5f;
-  font-weight: bold;
-  border: 2px solid #b5c3eb;
-  border-radius: 4px;
-  cursor: pointer;
   font-family: "Oleo Script", system-ui;
-  font-size: 1rem;
-  /* 如果你想微调位置，可以加一个轻微的相对偏移 */
-  position: relative;
-  top: 0; /* 或者负值，上移一点 */
 }

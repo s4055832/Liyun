@@ -8,12 +8,12 @@ html {
   /* 1. 半透明渐变（RGBA）在前，图片在后 */
   background: linear-gradient(
       135deg,
-      rgba(148, 178, 65, 0.5) 0%,
-      /* 0% 位置：浅粉，50% 透明 */ rgba(37, 181, 181, 0.5) 40%,
-      /* 中间：浅橙，50% 透明 */ rgba(161, 196, 253, 0.5) 100%
+      rgba(85, 116, 0, 0.5) 0%,
+      /* 0% 位置：浅粉，50% 透明 */ rgba(0, 159, 159, 0.5) 40%,
+      /* 中间：浅橙，50% 透明 */ rgba(29, 80, 161, 0.5) 100%
         /* 100%：淡蓝，50% 透明 */
     ),
-    url("bg.jpg") center/130% no-repeat; /* 图片路径根据你项目调整 */
+    url("bg.jpg") center/160% no-repeat; /* 图片路径根据你项目调整 */
 
   /* 2. 确保铺满全屏 */
   min-height: 100vh;
@@ -35,6 +35,12 @@ html {
   font-family: "Playwrite RO", cursive;
   font-optical-sizing: auto;
   font-weight: <weight>;
+  font-style: normal;
+}
+
+.permanent-marker-regular {
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -81,7 +87,7 @@ header h1 {
   font-size: 4em;
   margin-bottom: 10px;
   color: #2a3f5f;
-  font-family: "Oleo Script", system-ui;
+  font-family: "Permanent Marker", cursive;
 }
 
 header p {
