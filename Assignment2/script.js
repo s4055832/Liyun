@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
   // Pomodoro count controls
   const decreaseBtn = document.getElementById("decreaseBtn");
@@ -63,14 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const successMessage = document.getElementById("successMessage");
   const beginStudyButton = document.getElementById("beginStudyButton");
   confirmSoundsBtn.addEventListener("click", () => {
-    // 标记为 Complete
+    // Set Complete
     confirmSoundsBtn.textContent = "Complete";
     confirmSoundsBtn.disabled = true;
 
-    // ① 保存番茄钟次数
+    // Collect pomodoro times
     localStorage.setItem("pomodoroCount", count);
 
-    // ② 收集所有选中的音频及其音量
+    // Collect sound and volume
     const selectedSounds = [];
     allCards.forEach((card) => {
       if (card.classList.contains("selected")) {
@@ -84,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     localStorage.setItem("selectedSounds", JSON.stringify(selectedSounds));
 
-    // 显示成功提示 & “Begin Studying”按钮
+    // Success & Begin Studying
     successMessage.classList.remove("hidden");
     beginStudyButton.classList.remove("hidden");
   });

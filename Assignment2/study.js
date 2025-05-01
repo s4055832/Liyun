@@ -1,4 +1,3 @@
-// study.js
 document.addEventListener("DOMContentLoaded", () => {
   const backBtn = document.getElementById("backButton");
   const video = document.getElementById("studyVideo");
@@ -6,17 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const playBtn = document.getElementById("PlayBtn");
   const switchBtn = document.getElementById("switchBtn");
 
-  // 1. 返回首页
+  // Go back to homepage
   backBtn.addEventListener("click", () => {
     window.location.href = "index.html";
   });
 
-  // 2. 读取番茄钟次数
+  // Load pomodoro count
   const storedCount = parseInt(localStorage.getItem("pomodoroCount"), 10);
   const sessions = isNaN(storedCount) || storedCount < 1 ? 1 : storedCount;
   let totalSeconds = sessions * 25 * 60;
 
-  // 3. 准备背景音
+  // Background sounds
   const ambientAudios = [];
   JSON.parse(localStorage.getItem("selectedSounds") || "[]").forEach(
     ({ src, volume }) => {
@@ -27,19 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // 4. 提示音（将 alarm.mp3 放在工程根目录）
+  // Alert sound
   const alarmSound = new Audio("ding.mp3");
 
-  // 5. 视频源 & 循环
+  // Video sources & loop
   const sources = ["normal.mp4", "normal1.mp4", "normal2.mp4"];
   let current = 0;
   video.loop = true;
 
-  // 6. 倒计时 & 播放状态
+  // Countdown & play state
   let timerInterval = null;
   let isPlaying = false;
 
-  // 格式化 MM:SS
+  // Format time as MM:SS
   function formatTime(sec) {
     const m = String(Math.floor(sec / 60)).padStart(2, "0");
     const s = String(sec % 60).padStart(2, "0");
@@ -51,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateDisplay();
 
-  // 7. 切换视频源
+  // Switch video source
   switchBtn.addEventListener("click", () => {
     current = (current + 1) % sources.length;
     video.src = sources[current];
@@ -59,10 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isPlaying) video.play();
   });
 
-  // 8. 播放/暂停 切换
+  // Toggle play/pause
   playBtn.addEventListener("click", () => {
     if (!isPlaying) {
-      // —— Start ——
+      // Start playback
       isPlaying = true;
       playBtn.textContent = "Pause";
       video.play();
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
           totalSeconds--;
           updateDisplay();
         } else {
-          // 倒计时到零：播放提示音 & 停止一切
+          // When countdown ends: play alert & stop all
           clearInterval(timerInterval);
           alarmSound.play();
           isPlaying = false;
@@ -82,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }, 1000);
     } else {
-      // —— Pause ——
+      // Pause playback
       isPlaying = false;
       playBtn.textContent = "Start";
       video.pause();

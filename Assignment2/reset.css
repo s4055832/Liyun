@@ -1,4 +1,4 @@
-/* 样式重置文件：统一各浏览器默认样式差异，保持网页一致性 */
+/* Reset stylesheet: unify default browser styles for consistent rendering */
 
 html,
 body,
@@ -81,15 +81,15 @@ time,
 mark,
 audio,
 video {
-  margin: 0; /* 去除默认外边距 */
-  padding: 0; /* 去除默认内边距 */
-  border: 0; /* 去除默认边框 */
-  font-size: 100%; /* 文字大小继承父级设置 */
-  font: inherit; /* 继承父级字体样式 */
-  vertical-align: baseline; /* 垂直对齐为基线 */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  border: 0; /* Remove default border */
+  font-size: 100%; /* Use full font size */
+  font: inherit; /* Inherit font styles */
+  vertical-align: baseline; /* Align to baseline */
 }
 
-/* HTML5 元素显示为块级元素，确保旧浏览器兼容性 */
+/* Make HTML5 elements block-level */
 article,
 aside,
 details,
@@ -101,22 +101,22 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+  display: block; /* Set element to block */
 }
 
 body {
-  line-height: 1; /* 设置统一的行高 */
-  font-family: sans-serif; /* 使用系统默认无衬线字体 */
-  background-color: #f5f7fa; /* 设置背景颜色为浅灰蓝 */
-  color: #333; /* 设置默认字体颜色为深灰色 */
+  line-height: 1; /* Set default line height */
+  font-family: sans-serif; /* Use default sans-serif font */
+  background-color: #f5f7fa; /* Light gray-blue background */
+  color: #333; /* Dark gray text color */
 }
 
 ol,
 ul {
-  list-style: none; /* 去除列表默认的圆点或数字样式 */
+  list-style: none; /* Remove list markers */
 }
 
 table {
-  border-collapse: collapse; /* 表格边框合并 */
-  border-spacing: 0; /* 单元格之间没有间距 */
+  border-collapse: collapse; /* Collapse table borders */
+  border-spacing: 0; /* Remove cell spacing */
 }
