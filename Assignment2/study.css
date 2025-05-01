@@ -27,6 +27,12 @@ html {
   font-style: normal;
 }
 
+.norican-regular {
+  font-family: "Norican", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #backButton {
   position: absolute;
   top: 20px;
@@ -72,10 +78,10 @@ html {
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  color: #ffffff8d;
+  color: #ffffff16;
   font-size: 4rem; /* 字体可以适当放大一点，更有视觉冲击力 */
   font-weight: bold;
-  font-family: "Oleo Script", system-ui;
+  font-family: "Norican", cursive;
 }
 
 播放/暂停 按钮的容器，水平居中，垂直偏下 #PlayControl {
@@ -88,7 +94,7 @@ html {
   text-align: center;
 }
 
-/* Start/Pause 切换按钮样式 */
+/* Start/Pause */
 #PlayBtn {
   display: inline-block;
   padding: 12px 24px;
@@ -98,7 +104,7 @@ html {
   border: 2px solid #b5c3eb;
   border-radius: 4px;
   cursor: pointer;
-  font-family: "Oleo Script", system-ui;
+  font-family: "Permanent Marker", cursive;
   font-size: 1rem;
 }
 
@@ -125,13 +131,8 @@ html {
   border: 2px solid #b5c3eb;
   border-radius: 4px;
   cursor: pointer;
-  font-family: "Oleo Script", system-ui;
+  font-family: "Permanent Marker", cursive;
   font-size: 1rem;
-}
-
-/* 在工具栏里的 PlayBtn，不再做绝对定位 */
-#PlayBtn {
-  /* 上面的通用样式已经覆盖，这里留空或做微调 */
 }
 
 /* 隐藏原先为按钮留出的容器（如果你还保留了 #PlayControl） */

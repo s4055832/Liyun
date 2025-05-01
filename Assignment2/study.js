@@ -6,17 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const playBtn = document.getElementById("PlayBtn");
   const switchBtn = document.getElementById("switchBtn");
 
-  // 返回首页
+  // 1. 返回首页
   backBtn.addEventListener("click", () => {
     window.location.href = "index.html";
   });
 
-  // 读取番茄钟次数
+  // 2. 读取番茄钟次数
   const storedCount = parseInt(localStorage.getItem("pomodoroCount"), 10);
   const sessions = isNaN(storedCount) || storedCount < 1 ? 1 : storedCount;
   let totalSeconds = sessions * 25 * 60;
 
-  // 准备背景音
+  // 3. 准备背景音
   const ambientAudios = [];
   JSON.parse(localStorage.getItem("selectedSounds") || "[]").forEach(
     ({ src, volume }) => {
@@ -27,14 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  // 视频源列表 & 索引
+  // 4. 提示音（将 alarm.mp3 放在工程根目录）
+  const alarmSound = new Audio("ding.mp3");
+
+  // 5. 视频源 & 循环
   const sources = ["normal.mp4", "normal1.mp4", "normal2.mp4"];
   let current = 0;
-
-  // 设置视频单个循环
   video.loop = true;
 
-  // 倒计时相关
+  // 6. 倒计时 & 播放状态
   let timerInterval = null;
   let isPlaying = false;
 
@@ -50,16 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateDisplay();
 
-  // 切换视频源（只是更换 src，新的视频也会单独循环）
+  // 7. 切换视频源
   switchBtn.addEventListener("click", () => {
     current = (current + 1) % sources.length;
     video.src = sources[current];
     video.load();
-    // 保持之前的播放/暂停状态
     if (isPlaying) video.play();
   });
 
-  // 播放/暂停 切换
+  // 8. 播放/暂停 切换
   playBtn.addEventListener("click", () => {
     if (!isPlaying) {
       // —— Start ——
@@ -72,8 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
           totalSeconds--;
           updateDisplay();
         } else {
-          // 倒计时到零：停止一切
+          // 倒计时到零：播放提示音 & 停止一切
           clearInterval(timerInterval);
+          alarmSound.play();
           isPlaying = false;
           playBtn.textContent = "Start";
           video.pause();
