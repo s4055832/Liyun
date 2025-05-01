@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const backBtn = document.getElementById("backButton");
   const video = document.getElementById("studyVideo");
   const timerDisplay = document.getElementById("studyTimer");
-  const playControl = document.getElementById("PlayControl");
   const playBtn = document.getElementById("PlayBtn");
+  const switchBtn = document.getElementById("switchBtn");
 
+  // 返回首页
   backBtn.addEventListener("click", () => {
     window.location.href = "index.html";
   });
@@ -15,26 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const sessions = isNaN(storedCount) || storedCount < 1 ? 1 : storedCount;
   let totalSeconds = sessions * 25 * 60;
 
-  // 准备背景音列表
+  // 准备背景音
   const ambientAudios = [];
-  const storedSounds = JSON.parse(
-    localStorage.getItem("selectedSounds") || "[]"
+  JSON.parse(localStorage.getItem("selectedSounds") || "[]").forEach(
+    ({ src, volume }) => {
+      const a = new Audio(src);
+      a.loop = true;
+      a.volume = parseFloat(volume);
+      ambientAudios.push(a);
+    }
   );
-  storedSounds.forEach(({ src, volume }) => {
-    const a = new Audio(src);
-    a.loop = true;
-    a.volume = parseFloat(volume);
-    ambientAudios.push(a);
-  });
 
+  // 视频源列表 & 索引
+  const sources = ["normal.mp4", "normal1.mp4", "normal2.mp4"];
+  let current = 0;
+
+  // 设置视频单个循环
+  video.loop = true;
+
+  // 倒计时相关
   let timerInterval = null;
-  let isCounting = false;
+  let isPlaying = false;
 
+  // 格式化 MM:SS
   function formatTime(sec) {
-    const m = Math.floor(sec / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (sec % 60).toString().padStart(2, "0");
+    const m = String(Math.floor(sec / 60)).padStart(2, "0");
+    const s = String(sec % 60).padStart(2, "0");
     return `${m}:${s}`;
   }
 
@@ -43,13 +50,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   updateDisplay();
 
-  // 显示控制按钮
-  playControl.classList.remove("hidden");
+  // 切换视频源（只是更换 src，新的视频也会单独循环）
+  switchBtn.addEventListener("click", () => {
+    current = (current + 1) % sources.length;
+    video.src = sources[current];
+    video.load();
+    // 保持之前的播放/暂停状态
+    if (isPlaying) video.play();
+  });
 
+  // 播放/暂停 切换
   playBtn.addEventListener("click", () => {
-    if (!isCounting) {
+    if (!isPlaying) {
       // —— Start ——
-      isCounting = true;
+      isPlaying = true;
       playBtn.textContent = "Pause";
       video.play();
       ambientAudios.forEach((a) => a.play());
@@ -58,38 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
           totalSeconds--;
           updateDisplay();
         } else {
+          // 倒计时到零：停止一切
           clearInterval(timerInterval);
+          isPlaying = false;
+          playBtn.textContent = "Start";
+          video.pause();
+          ambientAudios.forEach((a) => a.pause());
         }
       }, 1000);
     } else {
       // —— Pause ——
-      isCounting = false;
+      isPlaying = false;
       playBtn.textContent = "Start";
       video.pause();
-      ambientAudios.forEach((a) => a.pause()); // ← 这里加上暂停所有音频
+      ambientAudios.forEach((a) => a.pause());
       clearInterval(timerInterval);
     }
   });
 });
-
-/* 隐藏 Safari/Chrome 的默认大播放按钮 */
-#studyVideo::-webkit-media-controls-start-playback-button,
-#studyVideo::-webkit-media-controls-overlay-play-button {
-  display: none !important;
-  opacity: 0 !important;
-}
-
-/* 隐藏 Edge/IE 的大播放图标 */
-#studyVideo::-ms-clear {
-  display: none !important;
-}
-
-/* 隐藏所有浏览器可能的内建覆盖层 */
-#studyVideo::-webkit-media-controls {
-  display: none !important;
-}
-
-/* 确保视频本身可点击到自定义按钮下方 */
-#studyVideo {
-  pointer-events: none;
-}
