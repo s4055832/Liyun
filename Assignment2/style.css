@@ -4,20 +4,19 @@ html {
   padding: 0;
   height: auto;
   font-family: "Poppins", sans-serif;
-  /* Semi-transparent gradient (RGBA) before background image */
+  /* Translucent gradient in front, image in back */
   background: linear-gradient(
       135deg,
       rgba(85, 116, 0, 0.5) 0%,
       rgba(0, 159, 159, 0.5) 40%,
       rgba(29, 80, 161, 0.5) 100%
     ),
-    url("bg.jpg") center/160% no-repeat; /* Adjust image path as needed */
+    url("bg.jpg") center/160% no-repeat;
 
-  /* Ensure full-screen coverage */
+  /* Make sure it fills the entire screen */
   min-height: 100vh;
 }
 
-/* Font Definitions */
 .oleo-script-regular {
   font-family: "Oleo Script", system-ui;
   font-weight: 400;
@@ -30,7 +29,7 @@ html {
   font-style: normal;
 }
 
-.playwrite-ro-<uniquifier > {
+.playwrite-ro- <uniquifier > {
   font-family: "Playwrite RO", cursive;
   font-optical-sizing: auto;
   font-weight: <weight>;
@@ -43,7 +42,6 @@ html {
   font-style: normal;
 }
 
-/* Main Container */
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -51,13 +49,11 @@ html {
   text-align: center;
 }
 
-/* Header Section */
 header {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* Screen Panels */
 .screen {
   display: none;
   text-align: center;
@@ -67,7 +63,6 @@ header {
   display: block;
 }
 
-/* Buttons */
 button {
   cursor: pointer;
   border: none;
@@ -84,7 +79,6 @@ button:disabled {
   cursor: default;
 }
 
-/* Header Text Styles */
 header h1 {
   font-size: 4em;
   margin-bottom: 10px;
@@ -99,7 +93,6 @@ header p {
   margin-bottom: 40px;
 }
 
-/* Welcome Screen Text */
 #welcomeScreen > h2,
 #welcomeScreen > p {
   font-family: "Permanent Marker", cursive;
@@ -108,7 +101,7 @@ header p {
   color: #2a3f5f;
 }
 
-/* Playlist + Pomodoro Module */
+/* Suggested track + Pomodoro Module */
 .extra-features {
   display: flex;
   gap: 30px;
@@ -117,7 +110,6 @@ header p {
   margin-top: 30px;
 }
 
-/* Playlist Styles */
 .playlist,
 .pomodoro {
   background: #dee9fccb;
@@ -138,13 +130,13 @@ header p {
 }
 
 .playlist ul {
-  display: flex; /* Arrange items horizontally */
-  flex-wrap: wrap; /* Wrap items to new lines */
-  justify-content: center; /* Center items */
-  gap: 20px; /* Space between buttons */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   padding: 0;
   margin: 0;
-  list-style: none; /* Remove default bullets */
+  list-style: none; /* Remove the dot that comes with ul */
 }
 
 .playlist button {
@@ -161,7 +153,6 @@ header p {
   border: 2px solid #b5c3eb;
 }
 
-/* Pomodoro Styles */
 .pomodoro h2 {
   font-size: 2em;
   margin-bottom: 10px;
@@ -241,12 +232,34 @@ header p {
   background-color: #ffffff;
 }
 
-/* Background Sound Module */
+/* background music */
+.soundcards {
+  background: #dee9fccb;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.soundcards h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  font-family: "Permanent Marker", cursive;
+  color: #2a3f5f;
+}
+
+.soundcards p {
+  font-size: 0.8em;
+  color: #6a84c7;
+  font-family: "Playwrite RO", cursive;
+  line-height: 1.6;
+}
+
 #bg-sound-module {
   margin-top: 40px;
 }
 
-/* Category Buttons */
+/* style button */
 .category-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -272,7 +285,7 @@ header p {
   background-color: #b5c3eb;
 }
 
-/* Sound Cards Layout */
+/* Music choice */
 .sound-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -285,8 +298,7 @@ header p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 45px; /* Space between cards */
-  padding: 10px;
+  gap: 45px;
 }
 
 .sound-card {
@@ -294,8 +306,8 @@ header p {
   border: 2px solid #b5c3eb;
   border-radius: 6px;
   padding: 10px;
-  width: 180px; /* Fixed card width */
-  box-sizing: border-box; /* Include padding in width */
+  width: 180px;
+  box-sizing: border-box;
 }
 
 .sound-cards span {
@@ -336,13 +348,13 @@ header p {
   font-size: 14px;
 }
 
-/* Volume Slider */
+/* Volume */
 .volume-slider {
   width: 100%;
   margin-top: 8px;
 }
 
-/* Hide Elements */
+/* Hide style */
 .hidden {
   display: none !important;
 }
@@ -356,10 +368,9 @@ header p {
 
 #beginStudyButton,
 #startButton {
-  font-family: "Oleo Script", system-ui;
+  font-family: "Permanent Marker", cursive;
 }
 
-/* Footer */
 footer {
   margin-top: 50px;
   font-size: 0.9em;
