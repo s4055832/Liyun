@@ -16,6 +16,9 @@ html {
   /* Make sure it fills the entire screen */
   min-height: 100vh;
 }
+/* The blue-green background is more in line with the natural feeling 
+and also fits the background music. Adding a little symmetrical pattern 
+to the color makes the webpage look richer. */
 
 .oleo-script-regular {
   font-family: "Oleo Script", system-ui;
@@ -100,8 +103,14 @@ header p {
   font-size: 1.5rem;
   color: #2a3f5f;
 }
+/* A variety of fonts are selected to facilitate the distinction of reading priorities */
 
 /* Suggested track + Pomodoro Module */
+/* If the two modules are placed together 
+and the other modules and text are aligned in the center, 
+the layout will appear monotonous and dull. Therefore, 
+it is divided into 4 sections, one occupies 3 positions 
+and the other occupies 1 position. */
 .extra-features {
   display: flex;
   gap: 30px;
@@ -176,6 +185,7 @@ header p {
   line-height: 1.6;
 }
 
+/* The size of the number is increased to make the user's visual center of gravity on it. */
 #sessionCount {
   font-size: 3rem;
   color: #5861df;
@@ -186,6 +196,8 @@ header p {
   font-family: "Oleo Script", system-ui;
 }
 
+/* The use of illustration-style buttons makes the overall atmosphere of the website more lively */
+/* Added borders to make the website style more unified */
 #increaseBtn:hover,
 #confirmBtn:hover {
   background-color: #f7f7f7;
@@ -233,6 +245,9 @@ header p {
 }
 
 /* background music */
+/* Make each background music into a small card, 
+which is more in line with the style of the previous track 
+and tomato timer section */
 .soundcards {
   background: #dee9fccb;
   padding: 20px;
@@ -260,6 +275,7 @@ header p {
 }
 
 /* style button */
+/* Category buttons help users quickly find the right music */
 .category-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -359,6 +375,7 @@ header p {
   display: none !important;
 }
 
+/* Unified text style */
 #successMessage > span {
   font-size: 1.5em;
   color: #6a84c7;

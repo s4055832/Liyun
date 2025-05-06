@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Pomodoro count controls
+  // Let the button of the Pomodoro module control the number of Pomodoros
   const decreaseBtn = document.getElementById("decreaseBtn");
   const increaseBtn = document.getElementById("increaseBtn");
   const sessionCount = document.getElementById("sessionCount");
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Sound card filtering
+  // Let different types of music be categorized by tags
   const filterButtons = document.querySelectorAll(".category-buttons button");
   const allCards = document.querySelectorAll(".sound-card");
   filterButtons.forEach((btn) => {
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmSoundsBtn.textContent = "Complete";
     confirmSoundsBtn.disabled = true;
 
+    // Prepare for the study page and connect the data of the two pages together
     // Collect pomodoro times
     localStorage.setItem("pomodoroCount", count);
 
@@ -84,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("selectedSounds", JSON.stringify(selectedSounds));
 
     // Success & Begin Studying
+    // Unhide the text and buttons, and use the celebratory GIF in the previously loaded page to give users a sense of accomplishment
     successMessage.classList.remove("hidden");
     beginStudyButton.classList.remove("hidden");
   });
