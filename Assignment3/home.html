@@ -2,170 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Garden</title>
-    <style>
-      /* --- Toolbar styles --- */
-      #toolbar {
-        display: flex; /* 使用 flex 布局工具栏 */
-        flex-wrap: wrap; /* 工具栏元素换行 */
-        gap: 1rem; /* 元素间距为1rem */
-        padding: 1rem; /* 工具栏内边距 */
-        background: #f5f5f5; /* 背景色浅灰 */
-        border-bottom: 2px solid #ddd; /* 底部边框 */
-      }
-      #toolbar label {
-        font-size: 0.9rem; /* 文本字体大小 */
-      }
-      #toolbar select {
-        margin-left: 0.3rem; /* 下拉框左侧留空 */
-      }
-
-      /* --- Garden grid styles --- */
-      #garden {
-        display: grid; /* 使用 CSS 网格布局 */
-        grid-template-columns: repeat(10, 1fr); /* 10 列等分 */
-        gap: 2px; /* 单元格间隙 */
-        padding: 1rem; /* 网格外围内边距 */
-        max-width: 600px; /* 最大宽度 */
-        margin: 0 auto; /* 水平居中 */
-      }
-      .cell {
-        width: 100%; /* 宽度占父容器 */
-        padding-top: 100%; /* 高度与宽度相同，保持正方 */
-        position: relative; /* 相对定位 */
-        background: #e0ffe0; /* 初始背景浅绿 */
-        border: 1px solid #ccc; /* 边框灰色 */
-        cursor: pointer; /* 鼠标为指针 */
-      }
-      .cell.planted {
-        background: #a0cfa0; /* 种植后背景变深 */
-      }
-      /* place any flower icon inside */
-      .cell > .flower {
-        position: absolute; /* 绝对定位 */
-        top: 5%; /* 距顶5% */
-        left: 5%; /* 距左5% */
-        width: 90%; /* 宽90% */
-        height: 90%; /* 高90% */
-        background: url("flower.svg") center/contain no-repeat; /* 背景图 */
-        pointer-events: none; /* 不阻挡鼠标事件 */
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pocket Garden – Pot Gallery</title>
+    <!-- 引入外部 CSS -->
+    <link rel="stylesheet" href="home.css" />
   </head>
   <body>
-    <!-- TOOLBAR: soil, pH, humidity, light -->
-    <div id="toolbar">
-      <label>
-        Soil:
-        <select id="soil-select">
-          <option value="chalk">Chalk</option>
-          <!-- 粉笔土 -->
-          <option value="loam">Loam</option>
-          <!-- 壤土 -->
-          <option value="clay">Clay</option>
-          <!-- 黏土 -->
-          <option value="sand">Sand</option>
-          <!-- 砂土 -->
-        </select>
-      </label>
+    <!-- 页面标题 -->
+    <h1>POCKET GARDEN</h1>
 
-      <label>
-        pH:
-        <select id="ph-select">
-          <option value="alkaline">Alkaline</option>
-          <!-- 碱性 -->
-          <option value="neutral">Neutral</option>
-          <!-- 中性 -->
-          <option value="acid">Acid</option>
-          <!-- 酸性 -->
-        </select>
-      </label>
-
-      <label>
-        Humidity:
-        <select id="humidity-select">
-          <option value="high">High</option>
-          <!-- 高湿 -->
-          <option value="medium">Medium</option>
-          <!-- 中湿 -->
-          <option value="low">Low</option>
-          <!-- 低湿 -->
-        </select>
-      </label>
-
-      <label>
-        Light:
-        <select id="light-select">
-          <option value="sun">Sun</option>
-          <!-- 阳光 -->
-          <option value="partial">Partial</option>
-          <!-- 半阴 -->
-          <option value="shade">Shade</option>
-          <!-- 全阴 -->
-        </select>
-      </label>
+    <!-- pot-gallery：横向滑动的花盆容器 -->
+    <div id="pot-gallery">
+      <!-- 示例花盆项（将 src 替换为你实际上传的图片地址） -->
+      <div class="pot-item">
+        <img src="Pot 1.PNG" alt="Pot 1" />
+      </div>
+      <div class="pot-item">
+        <img src="Pot 2.PNG" alt="Pot 2" />
+      </div>
+      <div class="pot-item">
+        <img src="Pot 3.PNG" alt="Pot 3" />
+      </div>
+      <div class="pot-item">
+        <img src="Pot 4.png" alt="Pot 4" />
+      </div>
+      <div class="pot-item">
+        <img src="Pot 5.png" alt="Pot 4" />
+      </div>
+      <div class="pot-item">
+        <img src="Pot 6.png" alt="Pot 4" />
+      </div>
+      <!-- …继续添加更多 .pot-item … -->
     </div>
-
-    <!-- GARDEN GRID: 10×10 cells -->
-    <div id="garden">
-      <!-- 生成 100 个单元格 -->
-      <!-- 简化示例：仅示范 20 个，可按需复制 -->
-      <div class="cell"></div>
-      <!-- 单元格 -->
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-
-      <!-- 继续复制直到 100 个 -->
-    </div>
-
-    <script>
-      // 示例 JS：点击切换种植状态
-      document.querySelectorAll(".cell").forEach((cell) => {
-        cell.addEventListener("click", () => {
-          cell.classList.toggle("planted"); // 切换 .planted 类
-          if (cell.classList.contains("planted")) {
-            // 添加花朵图标
-            const f = document.createElement("div");
-            f.className = "flower";
-            cell.appendChild(f);
-          } else {
-            // 移除花朵图标
-            const f = cell.querySelector(".flower");
-            if (f) cell.removeChild(f);
-          }
-        });
-
-        // 后续可扩展拖拽逻辑
-      });
-
-      // 读取工具栏设置函数
-      function getGardenSettings() {
-        return {
-          soil: document.getElementById("soil-select").value, // 土壤类型
-          ph: document.getElementById("ph-select").value, // pH 值
-          humidity: document.getElementById("humidity-select").value, // 湿度等级
-          light: document.getElementById("light-select").value, // 光照条件
-        };
-      }
-    </script>
   </body>
 </html>
