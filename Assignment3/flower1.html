@@ -1,119 +1,83 @@
-<!DOCTYPE html>
+<!DOCT<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Freeform 画廊 本地复刻</title>
     <link rel="stylesheet" href="flower1.css" />
-    <script src="flower1.js"></script>
+    <!-- 确保在 DOM 解析后再执行脚本 -->
+    <script src="flower1.js" defer></script>
   </head>
   <body>
     <h1>SUNNY</h1>
+
     <!-- 1. 菜单图标（右上角） -->
     <div id="toggle-sidebar">
-      <!-- 这里用一个简单的“☰”字符作为图标，你也可以换成 <img src="menu.png"> -->
       <span class="menu-icon">☰</span>
     </div>
+
     <!-- 2. 侧边栏容器 -->
     <div id="sidebar">
-      <!-- 可以再加一个关闭按钮，放在侧边栏顶部 -->
       <div id="sidebar-close">×</div>
       <div class="sidebar-content">
-        <!-- 浇水图标（请替换为你自己的图标文件或字体图标） -->
         <div class="icon-item">
           <img src="watering-can.png" alt="浇水" />
           <span>浇水</span>
         </div>
-        <!-- 种子图标 -->
         <div class="icon-item">
           <img src="seed.png" alt="种子" />
           <span>种子</span>
         </div>
         <div class="seed-section">
-          <!-- 点击按钮：切换显示/隐藏种子菜单 -->
           <button id="seed-toggle-btn" class="seed-btn">🌱 选种子</button>
-
-          <!-- 下拉种子菜单，初始隐藏 -->
           <div id="seed-dropdown" class="seed-dropdown">
-            <!-- 3×3 网格共 9 种子图标，每个 <div class="seed-icon"> 内放一个种子正方形图，draggable=true -->
-            <div class="seed-icon" draggable="true" data-gif="p2.gif">
+            <!-- 关键：下面的 data-mp4 要指向你在本地 / VSC 同目录下的 p2.mp4 -->
+            <div class="seed-icon" draggable="true" data-mp4="p2.mp4">
               <img src="p2.PNG" alt="种子1" />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/5xaOcLGvzHxDKjufnLW/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed2.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed2.PNG"
                 alt="种子2"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed3.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed3.PNG"
                 alt="种子3"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/26xBPjO2Ys9rAZTUN/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed4.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed4.PNG"
                 alt="种子4"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed5.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed5.PNG"
                 alt="种子5"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/3o6gE5aYFKW16ZFLiI/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed6.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed6.PNG"
                 alt="种子6"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed7.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed7.PNG"
                 alt="种子7"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/l3vR7NxgwSk8FTn4Q/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed8.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed8.PNG"
                 alt="种子8"
               />
             </div>
-            <div
-              class="seed-icon"
-              draggable="true"
-              data-gif="https://media.giphy.com/media/xUPGcCthvboHjhqLyI/giphy.gif"
-            >
+            <div class="seed-icon" draggable="true" data-mp4="Seed9.mp4">
               <img
                 src="https://freight.cargo.site/w/100/h/100/q/75/i/Seed9.PNG"
                 alt="种子9"
@@ -123,132 +87,82 @@
         </div>
       </div>
     </div>
-    <!-- ==================== 种子区（Seed Section） ==================== -->
 
-    <!-- 
-    父容器：宽度设置为 Cargo 上的 --resize-parent-width: 584.578125px
-    高度设置为 140px（我们计算出最小约 138.15px，取 140px 保证不被裁切）
-  -->
+    <!-- ==================== 花盆区域（gallery-container） ==================== -->
     <div class="gallery-container">
-      <!-- —— 第一张 —— 
-         freeform-scale="18.687817785291845%"
-         freeform-x="77.99245879656672%"
-         freeform-y="0%"
-         freeform-z="1"
-         hash="Z2381893084202006379424354048323"
-    -->
+      <!-- 例：第一个花盆 -->
       <div
         class="pot-item"
         style="
           position: absolute;
-          left: 77.99245879656672%;
+          left: 77.99%;
           top: 0%;
-          width: 18.687817785291845%;
+          width: 18.68%;
           z-index: 1;
         "
       >
-        <!-- 如果离线开发，把下面 src 改成 src="images/Pot1.PNG" -->
-        <img src="Pot 5.PNG" alt="Pot 1" style="width: 100%; height: auto" />
+        <img src="Pot 5.PNG" alt="Pot 1" />
       </div>
-
-      <!-- —— 第二张 —— 
-         freeform-scale="16.40%"
-         freeform-x="16.494375496550255%"
-         freeform-y="0.7960772324263368%"
-         freeform-z="3"
-         hash="K2380689892073171716947319363907"
-    -->
+      <!-- 其他 pot-item 块与之前保持一致，只要确保在它们内部可以插入 <video> 和 <img class="final-frame"> -->
       <div
         class="pot-item"
         style="
           position: absolute;
-          left: 16.494375496550255%;
-          top: 0.7960772324263368%;
+          left: 16.49%;
+          top: 0.79%;
           width: 16.4%;
           z-index: 3;
         "
       >
-        <img src="Pot 1.PNG" alt="Pot 2" style="width: 100%; height: auto" />
+        <img src="Pot 1.PNG" alt="Pot 2" />
       </div>
-
-      <!-- —— 第三张 —— 
-         freeform-scale="20.00%"
-         freeform-x="44.034767302951785%"
-         freeform-y="5.83241221984432%"
-         freeform-z="5"
-         hash="T2380689892165405437315867121987"
-    -->
       <div
         class="pot-item"
         style="
           position: absolute;
-          left: 44.034767302951785%;
-          top: 5.83241221984432%;
+          left: 44.03%;
+          top: 5.83%;
           width: 20%;
           z-index: 5;
         "
       >
-        <img src="Pot 3.PNG" alt="Pot 3" style="width: 100%; height: auto" />
+        <img src="Pot 3.PNG" alt="Pot 3" />
       </div>
-
-      <!-- —— 第四张 —— 
-         freeform-scale="26.81%"
-         freeform-x="0%"
-         freeform-y="9.16017967592484%"
-         freeform-z="2"
-         hash="S2381893084165112891276934945091"
-    -->
       <div
         class="pot-item"
         style="
           position: absolute;
           left: 0%;
-          top: 9.16017967592484%;
+          top: 9.16%;
           width: 26.81%;
           z-index: 2;
         "
       >
-        <img src="Pot 2.PNG" alt="Pot 4" style="width: 100%; height: auto" />
+        <img src="Pot 2.PNG" alt="Pot 4" />
       </div>
-
-      <!-- —— 第五张 —— 
-         freeform-scale="7.007931669484442%"
-         freeform-x="29.40787706048336%"
-         freeform-y="11.669527997930441%"
-         freeform-z="4"
-         hash="K2381893084183559635350644496707"
-    -->
       <div
         class="pot-item"
         style="
           position: absolute;
-          left: 29.40787706048336%;
-          top: 11.669527997930441%;
-          width: 7.007931669484442%;
+          left: 29.4%;
+          top: 11.67%;
+          width: 7%;
           z-index: 4;
         "
       >
-        <img src="Pot 4.PNG" alt="Pot 5" style="width: 100%; height: auto" />
+        <img src="Pot 4.PNG" alt="Pot 5" />
       </div>
-
-      <!-- —— 第六张 —— 
-         freeform-scale="22.63%"
-         freeform-x="55.9549949551707%"
-         freeform-y="14.652759812798392%"
-         freeform-z="6"
-         hash="J2380689892183852181389576673603"
-    -->
       <div
         class="pot-item"
         style="
           position: absolute;
-          left: 55.9549949551707%;
-          top: 14.652759812798392%;
+          left: 55.95%;
+          top: 14.65%;
           width: 22.63%;
           z-index: 6;
         "
       >
-        <img src="Pot 6.PNG" alt="Pot 6" style="width: 100%; height: auto" />
+        <img src="Pot 6.PNG" alt="Pot 6" />
       </div>
     </div>
     <!-- =========== /gallery-container =========== -->

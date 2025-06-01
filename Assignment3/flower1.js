@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ======== 侧边栏切换逻辑 ========
+  // 侧边栏切换逻辑
   const toggleSidebarBtn = document.getElementById("toggle-sidebar");
   const sidebar = document.getElementById("sidebar");
   const sidebarCloseBtn = document.getElementById("sidebar-close");
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ======== 种子菜单切换逻辑 ========
+  // 种子菜单切换逻辑
   const seedToggleBtn = document.getElementById("seed-toggle-btn");
   const seedDropdown = document.getElementById("seed-dropdown");
 
@@ -31,40 +31,29 @@ document.addEventListener("DOMContentLoaded", () => {
       seedDropdown.style.display === "grid" ? "none" : "grid";
   });
 
-  // 点击侧边栏内其他地方或外部空白时隐藏种子菜单
+  // 点击其他地方时隐藏种子菜单
   document.addEventListener("click", (e) => {
     if (!seedToggleBtn.contains(e.target) && !seedDropdown.contains(e.target)) {
       seedDropdown.style.display = "none";
     }
   });
 
-  // ======== 拖拽种子到花盆逻辑 ========
+  // 拖拽种子到花盆逻辑
   const seedIcons = document.querySelectorAll(".seed-icon");
   const potItems = document.querySelectorAll(".pot-item");
 
   // 种子图标启动拖拽
   seedIcons.forEach((icon) => {
     icon.addEventListener("dragstart", (e) => {
-      const gifUrl = icon.getAttribute("data-gif");
-      e.dataTransfer.setData("text/plain", gifUrl);
+      const mp4Url = icon.getAttribute("data-mp4");
+      e.dataTransfer.setData("text/plain", mp4Url);
 
       // 创建拖拽预览图
       const preview = document.createElement("div");
-      preview.style.position = "absolute";
-      preview.style.left = "-1000px";
-      preview.style.top = "-1000px";
-      preview.style.width = "60px";
-      preview.style.height = "60px";
-      preview.style.borderRadius = "10px";
-      preview.style.overflow = "hidden";
-      preview.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
-      preview.style.zIndex = "9999";
+      preview.className = "seed-preview";
 
       const img = document.createElement("img");
       img.src = icon.querySelector("img").src;
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.style.objectFit = "cover";
 
       preview.appendChild(img);
       document.body.appendChild(preview);
@@ -80,30 +69,36 @@ document.addEventListener("DOMContentLoaded", () => {
   potItems.forEach((pot) => {
     pot.addEventListener("dragover", (e) => {
       e.preventDefault();
-      pot.style.transform = "scale(1.1)";
-    });
-
-    pot.addEventListener("dragleave", () => {
-      pot.style.transform = "";
     });
 
     pot.addEventListener("drop", (e) => {
       e.preventDefault();
-      pot.style.transform = "";
 
-      const gifUrl = e.dataTransfer.getData("text/plain");
-      if (!gifUrl) return;
+      const mp4Url = e.dataTransfer.getData("text/plain");
+      if (!mp4Url) return;
 
-      // 移除已有的动画
-      const existingVideo = pot.querySelector(".seed-video");
-      if (existingVideo) {
-        existingVideo.remove();
-      }
+      // 移除已有的视频和定格图像
+      const existingVideo = pot.querySelector(".plant-video");
+      if (existingVideo) existingVideo.remove();
+
+      const existingFrame = pot.querySelector(".final-frame");
+      if (existingFrame) existingFrame.remove();
+
+      // 创建"生长中"文本效果
+      const growingText = document.createElement("div");
+      growingText.className = "growing-text";
+      growingText.textContent = "🌱 Growing...";
+      pot.appendChild(growingText);
+
+      // 3秒后移除文本
+      setTimeout(() => {
+        growingText.remove();
+      }, 3000);
 
       // 创建视频元素
       const video = document.createElement("video");
-      video.src = gifUrl;
-      video.className = "seed-video";
+      video.src = mp4Url;
+      video.className = "plant-video";
       video.autoplay = true;
       video.muted = true;
       video.loop = false;
@@ -111,23 +106,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 视频结束后暂停在最后一帧
       video.addEventListener("ended", function () {
-        video.pause();
+        // 创建定格图像
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const finalFrame = document.createElement("img");
+        finalFrame.className = "final-frame";
+        finalFrame.src = canvas.toDataURL();
+
+        // 添加到花盆并移除视频
+        pot.appendChild(finalFrame);
+        video.remove();
       });
 
       // 添加到花盆
       pot.appendChild(video);
-
-      // 添加成功效果
-      pot.animate(
-        [
-          { transform: "scale(1.1)", offset: 0.3 },
-          { transform: "scale(1)", offset: 1 },
-        ],
-        {
-          duration: 600,
-          easing: "ease-out",
-        }
-      );
     });
   });
 });
