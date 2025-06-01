@@ -1,5 +1,3 @@
-// flower1.js
-
 document.addEventListener("DOMContentLoaded", () => {
   // ======== 侧边栏切换逻辑 ========
   const toggleSidebarBtn = document.getElementById("toggle-sidebar");
@@ -29,16 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   seedToggleBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    if (seedDropdown.style.display === "grid") {
-      seedDropdown.style.display = "none";
-    } else {
-      seedDropdown.style.display = "grid";
-    }
+    seedDropdown.style.display =
+      seedDropdown.style.display === "grid" ? "none" : "grid";
   });
 
   // 点击侧边栏内其他地方或外部空白时隐藏种子菜单
   document.addEventListener("click", (e) => {
-    // 如果点击目标既不在“选种子”按钮，也不在种子菜单内，则隐藏
     if (!seedToggleBtn.contains(e.target) && !seedDropdown.contains(e.target)) {
       seedDropdown.style.display = "none";
     }
@@ -54,112 +48,86 @@ document.addEventListener("DOMContentLoaded", () => {
       const gifUrl = icon.getAttribute("data-gif");
       e.dataTransfer.setData("text/plain", gifUrl);
 
-      // 拖拽时显示一个较小预览图
-      const dragPreview = document.createElement("img");
-      dragPreview.src = icon.querySelector("img").src;
-      dragPreview.style.width = "40px";
-      dragPreview.style.height = "40px";
-      document.body.appendChild(dragPreview);
-      e.dataTransfer.setDragImage(dragPreview, 20, 20);
+      // 创建拖拽预览图
+      const preview = document.createElement("div");
+      preview.style.position = "absolute";
+      preview.style.left = "-1000px";
+      preview.style.top = "-1000px";
+      preview.style.width = "60px";
+      preview.style.height = "60px";
+      preview.style.borderRadius = "10px";
+      preview.style.overflow = "hidden";
+      preview.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
+      preview.style.zIndex = "9999";
 
-      // 拖拽开始后立即移除预览图节点
+      const img = document.createElement("img");
+      img.src = icon.querySelector("img").src;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+
+      preview.appendChild(img);
+      document.body.appendChild(preview);
+      e.dataTransfer.setDragImage(preview, 30, 30);
+
       setTimeout(() => {
-        document.body.removeChild(dragPreview);
+        document.body.removeChild(preview);
       }, 0);
     });
   });
 
-  // 在每个 pot-item 上处理拖放
+  // 在每个花盆上处理拖放
   potItems.forEach((pot) => {
     pot.addEventListener("dragover", (e) => {
       e.preventDefault();
+      pot.style.transform = "scale(1.1)";
+    });
+
+    pot.addEventListener("dragleave", () => {
+      pot.style.transform = "";
     });
 
     pot.addEventListener("drop", (e) => {
       e.preventDefault();
+      pot.style.transform = "";
+
       const gifUrl = e.dataTransfer.getData("text/plain");
       if (!gifUrl) return;
 
-      // 如果 pot-item 已有旧的 GIF，先移除
-      const existingGif = pot.querySelector(".seed-gif");
-      if (existingGif) {
-        existingGif.remove();
+      // 移除已有的动画
+      const existingVideo = pot.querySelector(".seed-video");
+      if (existingVideo) {
+        existingVideo.remove();
       }
 
-      // 创建并插入新的 <img class="seed-gif">
-      const gifImg = document.createElement("img");
-      gifImg.src = gifUrl;
-      gifImg.className = "seed-gif";
-      pot.appendChild(gifImg);
+      // 创建视频元素
+      const video = document.createElement("video");
+      video.src = gifUrl;
+      video.className = "seed-video";
+      video.autoplay = true;
+      video.muted = true;
+      video.loop = false;
+      video.playsInline = true;
 
-      // 2 秒后淡出并移除 GIF
-      setTimeout(() => {
-        gifImg.style.transition = "opacity 0.3s";
-        gifImg.style.opacity = "0";
-        setTimeout(() => {
-          if (pot.contains(gifImg)) {
-            pot.removeChild(gifImg);
-          }
-        }, 300);
-      }, 2000);
-    });
-  });
-});
+      // 视频结束后暂停在最后一帧
+      video.addEventListener("ended", function () {
+        video.pause();
+      });
 
-// flower1.js
+      // 添加到花盆
+      pot.appendChild(video);
 
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. 给每个种子图标添加拖拽逻辑
-  const seedIcons = document.querySelectorAll(".seed-icon");
-  seedIcons.forEach((icon) => {
-    icon.addEventListener("dragstart", (e) => {
-      // 从 data-gif 属性读取对应 GIF 的 URL
-      const gifUrl = icon.getAttribute("data-gif");
-      e.dataTransfer.setData("text/plain", gifUrl);
-
-      // 可选：显示一个小预览图作为拖拽图像
-      const preview = document.createElement("img");
-      preview.src = icon.querySelector("img").src;
-      preview.style.width = "40px";
-      preview.style.height = "40px";
-      document.body.appendChild(preview);
-      e.dataTransfer.setDragImage(preview, 20, 20);
-      setTimeout(() => document.body.removeChild(preview), 0);
-    });
-  });
-
-  // 2. 让每个花盆 (pot-item) 可以接受拖放
-  const potItems = document.querySelectorAll(".pot-item");
-  potItems.forEach((pot) => {
-    pot.addEventListener("dragover", (e) => {
-      e.preventDefault(); // 必须阻止默认才能允许 drop
-    });
-
-    pot.addEventListener("drop", (e) => {
-      e.preventDefault();
-      const gifUrl = e.dataTransfer.getData("text/plain");
-      if (!gifUrl) return;
-
-      // 如果已经存在旧的 GIF，先移除
-      const oldGif = pot.querySelector(".seed-gif");
-      if (oldGif) oldGif.remove();
-
-      // 创建新的 <img class="seed-gif">，放在花盆上方
-      const gifImg = document.createElement("img");
-      gifImg.src = gifUrl;
-      gifImg.className = "seed-gif";
-      pot.appendChild(gifImg);
-
-      // 2 秒后淡出并移除，营造“生长”效果
-      setTimeout(() => {
-        gifImg.style.transition = "opacity 0.3s";
-        gifImg.style.opacity = "0";
-        setTimeout(() => {
-          if (pot.contains(gifImg)) {
-            pot.removeChild(gifImg);
-          }
-        }, 300);
-      }, 2000);
+      // 添加成功效果
+      pot.animate(
+        [
+          { transform: "scale(1.1)", offset: 0.3 },
+          { transform: "scale(1)", offset: 1 },
+        ],
+        {
+          duration: 600,
+          easing: "ease-out",
+        }
+      );
     });
   });
 });

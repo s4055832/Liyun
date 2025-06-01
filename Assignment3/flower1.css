@@ -1,119 +1,339 @@
-/* 父容器：定位参考、固定高度 */
-.gallery-container {
-  position: relative;
-  width: 100%;
-  height: 700px;
-  overflow: visible;
+/* ===========================================
+全局重置及基本布局
+=========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* 每个 pot-item 具备绝对定位样式，left/top/width 都在 inline style 里 */
-.pot-item {
-  position: absolute;
+body,
+html {
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #f0f9ff, #e6f7ff);
+  overflow-x: hidden;
+}
+
+/* ===========================================
+标题样式
+=========================================== */
+h1 {
   text-align: center;
+  margin-top: 30px;
+  font-size: 3rem;
+  color: #ff6b6b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 3px;
+  font-weight: 800;
 }
 
-/* img 让它撑满父容器宽度，高度自适应 */
-.pot-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.gallery-container {
-  position: relative;
-  width: 100%;
-  height: 600px;
-  margin-top: 300px; /* 整组往下 100px */
-  overflow: visible;
-}
-
-/* ======= 菜单图标样式 ======= */
+/* ===========================================
+侧边栏开关按钮（右上角） 
+=========================================== */
 #toggle-sidebar {
   position: fixed;
-  top: 20px; /* 根据需要调整距离顶部的距离 */
-  right: 20px; /* 距离右侧一定距离 */
-  width: 30px;
-  height: 30px;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s;
+  background-color: #ffd166;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 #toggle-sidebar:hover {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #ffb347;
+  transform: rotate(90deg);
 }
 
 .menu-icon {
-  font-size: 20px;
-  line-height: 1;
+  font-size: 28px;
   user-select: none;
+  color: #fff;
 }
 
-/* ======= 侧边栏样式 ======= */
+/* ===========================================
+侧边栏容器 
+=========================================== */
 #sidebar {
   position: fixed;
   top: 0;
   right: 0;
-  width: 240px; /* 侧边栏的宽度 */
+  width: 280px;
   height: 100vh;
-  background-color: #fafafa;
-  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
-  transform: translateX(100%); /* 初始完全移出视口 */
-  transition: transform 0.3s ease;
+  background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 998;
+  padding-top: 20px;
+  border-left: 4px solid #ff9a76;
 }
 
-/* 当 #sidebar 带上 .open 时，将其滑入到页面可见范围 */
+/* 当 #sidebar 带上 .open 时滑入可见 */
 #sidebar.open {
   transform: translateX(0);
 }
 
-/* 关闭按钮 */
+/* 侧边栏关闭按钮 */
 #sidebar-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 18px;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
   cursor: pointer;
   user-select: none;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
 }
 
-/* 侧边栏内容容器 */
+#sidebar-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+/* ===========================================
+侧边栏内容 
+=========================================== */
 .sidebar-content {
-  margin-top: 50px; /* 给关闭按钮预留空间 */
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* 各个图标之间的间距 */
+  padding: 0 20px;
+  gap: 30px;
 }
 
-/* 每个图标项 */
+/* 单个图标项（例如 浇水、种子） */
 .icon-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   transition: transform 0.2s;
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .icon-item img {
-  width: 50px; /* 图标大小，可按需调整 */
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .icon-item span {
-  margin-top: 6px;
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 18px;
   color: #333;
+  font-weight: 600;
 }
 
-/* 悬停效果 */
 .icon-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ===========================================
+种子区域：按钮及下拉菜单 
+=========================================== */
+.seed-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* “选种子”按钮 */
+.seed-btn {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+}
+
+.seed-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 下拉种子菜单，初始隐藏 */
+.seed-dropdown {
+  display: none;
+  width: 100%;
+  margin-top: 15px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 15px;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 2px solid #e0e0e0;
+}
+
+/* 单个种子图标 */
+.seed-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: grab;
+  transition: all 0.3s ease;
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #fff;
+  border-radius: 10px;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f0f0f0;
+}
+
+.seed-icon img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: transform 0.3s;
+}
+
+.seed-icon:hover {
   transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-color: #ffd166;
+}
+
+.seed-icon:hover img {
+  transform: scale(1.1);
+}
+
+.seed-icon:active {
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+/* ===========================================
+Freeform 画廊容器（不受侧边栏影响） 
+=========================================== */
+.gallery-container {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 600px;
+  margin: 40px auto 80px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none" stroke="%23e0f7fa" stroke-width="2"/></svg>');
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 每个 pot-item 绝对定位 */
+.pot-item {
+  position: absolute;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.pot-item:hover {
+  transform: translateY(-10px) scale(1.05);
+  z-index: 100 !important;
+}
+
+/* pot-item 中的图片自适应宽度 */
+.pot-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+}
+
+/* ===========================================
+GIF 动画层叠样式 
+=========================================== */
+.seed-video {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: auto;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  animation: pop-in 0.6s forwards;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* 操作提示 */
+.instructions {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.instructions p {
+  font-size: 18px;
+  color: #444;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.instructions .highlight {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+/* 页脚 */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 30px;
 }
