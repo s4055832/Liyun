@@ -1,0 +1,119 @@
+/* 父容器：定位参考、固定高度 */
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: visible;
+}
+
+/* 每个 pot-item 具备绝对定位样式，left/top/width 都在 inline style 里 */
+.pot-item {
+  position: absolute;
+  text-align: center;
+}
+
+/* img 让它撑满父容器宽度，高度自适应 */
+.pot-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin-top: 300px; /* 整组往下 100px */
+  overflow: visible;
+}
+
+/* ======= 菜单图标样式 ======= */
+#toggle-sidebar {
+  position: fixed;
+  top: 20px; /* 根据需要调整距离顶部的距离 */
+  right: 20px; /* 距离右侧一定距离 */
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s;
+}
+
+#toggle-sidebar:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.menu-icon {
+  font-size: 20px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ======= 侧边栏样式 ======= */
+#sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 240px; /* 侧边栏的宽度 */
+  height: 100vh;
+  background-color: #fafafa;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%); /* 初始完全移出视口 */
+  transition: transform 0.3s ease;
+  z-index: 998;
+}
+
+/* 当 #sidebar 带上 .open 时，将其滑入到页面可见范围 */
+#sidebar.open {
+  transform: translateX(0);
+}
+
+/* 关闭按钮 */
+#sidebar-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 侧边栏内容容器 */
+.sidebar-content {
+  margin-top: 50px; /* 给关闭按钮预留空间 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* 各个图标之间的间距 */
+}
+
+/* 每个图标项 */
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon-item img {
+  width: 50px; /* 图标大小，可按需调整 */
+  height: 50px;
+}
+
+.icon-item span {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 悬停效果 */
+.icon-item:hover {
+  transform: scale(1.05);
+}
