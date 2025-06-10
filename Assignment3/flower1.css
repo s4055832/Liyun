@@ -241,7 +241,7 @@ h1 {
   height: 600px;
   margin: 300px auto;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .pot-item {
@@ -249,6 +249,8 @@ h1 {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  transform: scale(1.2);
+  transform-origin: top center; /* 以花盆底部中心为放大“锚点” */
 }
 
 .pot-item img {
