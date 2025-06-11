@@ -9,11 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.toggle("open");
   });
 
-  sidebarCloseBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    sidebar.classList.remove("open");
-  });
-
   // 点击空白处时隐藏侧边栏
   document.addEventListener("click", (e) => {
     if (!sidebar.contains(e.target) && !toggleSidebarBtn.contains(e.target)) {
