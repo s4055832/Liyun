@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="home.css" />
+    <!-- 确保在 DOM 解析后再执行脚本 -->
+    <script src="home.js" defer></script>
+</head>
+   
+</head>
+<body>
+    <!-- 背景装饰元素 -->
+    <i class="fas fa-leaf bg-leaf leaf-1"></i>
+    <i class="fas fa-seedling bg-leaf leaf-2"></i>
+    <i class="fas fa-leaf bg-leaf leaf-3"></i>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-seedling logo-icon"></i>
+                <h1 class="logo-text">Pocket Garden</h1>
+            </div>
+            <div class="music-control" id="musicControl">
+                <i class="fas fa-volume-up"></i>
+            </div>
+        </header>
+        
+        <div class="hero">
+            <h1>欢迎来到 Pocket Garden</h1>
+            <p>培育属于你的数字植物园，放松心情，享受自然之美</p >
+        </div>
+        
+        <div class="options">
+            <div class="option-card pot" id="potOption">
+                <i class="fas fa-spa option-icon"></i>
+                <h2 class="option-title">花盆</h2>
+                <p class="option-desc">在精美的花盆中培育独特的植物，体验从种子到开花的奇妙过程</p >
+            </div>
+            
+            <div class="option-card field" id="fieldOption">
+                <i class="fas fa-tree option-icon"></i>
+                <h2 class="option-title">花田</h2>
+                <p class="option-desc">在广阔的花田中种植多样植物，创建属于你的梦幻花园景观</p >
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Pocket Garden &copy; 2023 | 培育你的数字植物园</p >
+    </footer>
+    
+    <!-- 音频元素 -->
+    <audio id="bgMusic" loop>
+        <source src="https://assets.codepen.io/4175254/nature-sounds.mp3" type="audio/mp3">
+    </audio>
+    
+    
+</body>
+</html>
+</body>
+</html>

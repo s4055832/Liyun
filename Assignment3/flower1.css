@@ -16,7 +16,7 @@ h1 {
   text-align: center;
   margin: 25px 0;
   font-size: 3.2rem;
-  color: #ff7043;
+  color: #2d5aa6;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: 2px;
   font-weight: 800;
@@ -230,7 +230,7 @@ h1 {
 }
 
 .instructions .highlight {
-  color: #ff7043;
+  color: #3a3096;
   font-weight: bold;
 }
 
