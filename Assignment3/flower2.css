@@ -257,3 +257,16 @@ header h1 {
   font-weight: 900;
   font-style: bold;
 }
+
+/* 全屏天气视频覆盖 */
+#weather-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 100; /* 确保在花盆之下，但在背景之上 */
+  pointer-events: none; /* 不阻止页面其它交互 */
+  background: transparent;
+}

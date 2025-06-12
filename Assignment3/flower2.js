@@ -1,7 +1,31 @@
+// 获取天气视频元素
+const weatherVideo = document.getElementById("weather-video");
+// 状态标志：true=当前是晴天，false=当前是雨天
+let isSunny = true;
+
+// 先确保页面加载后执行
+document.addEventListener("DOMContentLoaded", () => {
+  const weatherBtn = document.getElementById("toggle-weather-btn");
+  weatherBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (isSunny) {
+      // 切换到雨天
+      weatherVideo.src = "rain.mp4";
+    } else {
+      // 切换回晴天
+      weatherVideo.src = "sun.mp4";
+    }
+    // 重新播放
+    weatherVideo.play();
+    // 翻转标志
+    isSunny = !isSunny;
+  });
+});
+
 // 侧边栏音乐按钮
 document.addEventListener("DOMContentLoaded", () => {
   // 创建并播放背景音乐
-  const bgMusic = new Audio("background.mp3"); // ← 指向你的音乐文件
+  const bgMusic = new Audio("background.m4a"); // ← 指向你的音乐文件
   bgMusic.loop = true;
   bgMusic.play().catch(() => {
     // 某些浏览器需要用户手势才能播放

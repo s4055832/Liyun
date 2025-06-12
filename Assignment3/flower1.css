@@ -207,7 +207,8 @@ h1 {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
+  width: 80%;
+  height: auto;
   pointer-events: none;
   z-index: 20;
   opacity: 0;
@@ -227,13 +228,21 @@ h1 {
 }
 .final-frame {
   position: absolute;
-  bottom: 100%;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
+  width: 80%;
+  height: auto;
   pointer-events: none;
   z-index: 15;
 }
+
+/* 针对 p7.mp4 的微调，使视频贴近花盆底部 */
+/* 仅针对落入 p7.mp4 的植物视频 */
+.pot-item .plant-video[src*="p7.mp4"] {
+  bottom: 2px !important; /* 调整值看实际效果微调 */
+}
+
 .seed-preview {
   position: absolute;
   width: 60px;
@@ -306,4 +315,17 @@ h1 {
   font-family: "Amatic SC", sans-serif;
   font-weight: 900;
   font-style: bold;
+}
+
+/* 全屏天气视频覆盖 */
+#weather-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 100; /* 确保在花盆之下，但在背景之上 */
+  pointer-events: none; /* 不阻止页面其它交互 */
+  background: transparent;
 }
