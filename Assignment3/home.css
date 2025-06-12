@@ -4,47 +4,22 @@
   box-sizing: border-box;
 }
 
+/* 页面整体背景和字体*/
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
-  min-height: 100vh;
-  display: flex;
+  background: linear-gradient(
+    135deg,
+    #e0f7fa 0%,
+    #bbdefb 100%
+  ); /*渐变背景提升视觉层次感 */
+  min-height: 100vh; /* 覆盖全屏 */
+  display: flex; /* 使得容器垂直居中或排列 */
   flex-direction: column;
-  overflow-x: hidden;
-  position: relative;
+  overflow-x: hidden; /* 防止水平滚动条 */
+  position: relative; /* 便于放置绝对定位的背景元素 */
 }
 
-/* 背景装饰元素 */
-.bg-leaf {
-  position: absolute;
-  opacity: 0.1;
-  z-index: 0;
-}
-
-.leaf-1 {
-  top: 10%;
-  left: 5%;
-  font-size: 8rem;
-  transform: rotate(-15deg);
-  color: #4caf50;
-}
-
-.leaf-2 {
-  bottom: 15%;
-  right: 7%;
-  font-size: 10rem;
-  transform: rotate(25deg);
-  color: #81c784;
-}
-
-.leaf-3 {
-  top: 40%;
-  right: 15%;
-  font-size: 6rem;
-  transform: rotate(45deg);
-  color: #66bb6a;
-}
-
+/* 主容器：限制内容宽度，居中显示 */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -52,10 +27,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10;
+  z-index: 10; /* 高于背景，但低于顶部导航 */
   position: relative;
 }
 
+/* 顶部区域*/
 header {
   width: 100%;
   display: flex;
@@ -64,18 +40,18 @@ header {
   padding: 20px 0;
 }
 
+/* Logo 区：图标 + 文本 */
 .logo {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 15px; /* 图标与文字间距 */
 }
 
 .logo-icon {
   font-size: 2.5rem;
   color: #4caf50;
-  animation: pulse 2s infinite;
+  animation: pulse 2s infinite; /* 呼吸动画，突出标志 */
 }
-
 .logo-text {
   font-family: "Exile", system-ui;
   font-size: 2.2rem;
@@ -83,10 +59,11 @@ header {
   background: linear-gradient(45deg, #2e7d32, #4caf50);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  color: transparent; /* 渐变文字效果 */
   letter-spacing: 1px;
 }
 
+/* 音乐控制按钮：圆形、悬浮效果 */
 .music-control {
   background: rgba(255, 255, 255, 0.8);
   width: 60px;
@@ -98,26 +75,24 @@ header {
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  z-index: 20;
+  z-index: 20; /* 置于其他元素之上 */
 }
-
 .music-control:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* 悬停放大提示可交互 */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.95);
 }
-
 .music-control i {
   font-size: 1.8rem;
   color: #4caf50;
 }
 
+/* 中心欢迎文案 */
 .hero {
   text-align: center;
   margin: 40px 0;
   max-width: 800px;
 }
-
 .hero h1 {
   font-family: "Berkshire Swash", serif;
   font-size: 4rem;
@@ -125,7 +100,6 @@ header {
   color: #2e7d32;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .hero p {
   font-family: "Amatic SC", sans-serif;
   font-size: 1.4rem;
@@ -134,6 +108,7 @@ header {
   margin-bottom: 30px;
 }
 
+/* 选项卡区域：卡片水平排列，响应式折行 */
 .options {
   display: flex;
   justify-content: center;
@@ -142,7 +117,6 @@ header {
   margin: 50px 0;
   width: 100%;
 }
-
 .option-card {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 20px;
@@ -157,15 +131,13 @@ header {
   transition: all 0.4s ease;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* 保证装饰线在内部 */
 }
-
 .option-card:hover {
-  transform: translateY(-15px) scale(1.03);
+  transform: translateY(-15px) scale(1.03); /* 悬浮上移并微放大 */
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.95);
 }
-
 .option-card::before {
   content: "";
   position: absolute;
@@ -173,15 +145,13 @@ header {
   left: 0;
   width: 100%;
   height: 8px;
-  background: linear-gradient(90deg, #4caf50, #81c784);
+  background: linear-gradient(90deg, #4caf50, #81c784); /* 卡片顶部装饰线 */
 }
-
 .option-icon {
   font-size: 6rem;
   margin-bottom: 30px;
   color: #4caf50;
 }
-
 .option-title {
   font-family: "Berkshire Swash", serif;
   font-size: 2.5rem;
@@ -189,7 +159,6 @@ header {
   margin-bottom: 20px;
   color: #2e7d32;
 }
-
 .option-desc {
   font-family: "Amatic SC", sans-serif;
   font-size: 1.2rem;
@@ -197,7 +166,7 @@ header {
   text-align: center;
   line-height: 1.6;
 }
-
+/* 特定卡片的背景叠加装饰 */
 .option-card.pot {
   background: linear-gradient(
       to bottom,
@@ -206,7 +175,6 @@ header {
     ),
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23a5d6a7" stroke-width="2" stroke-dasharray="5,5"/></svg>');
 }
-
 .option-card.field {
   background: linear-gradient(
       to bottom,
@@ -216,8 +184,9 @@ header {
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="none" stroke="%2381c784" stroke-width="2" stroke-dasharray="5,5"/></svg>');
 }
 
+/* 页脚固定在底部 */
 footer {
-  margin-top: auto;
+  margin-top: auto; /* 占据剩余空间，固定底部 */
   text-align: center;
   padding: 25px;
   color: #2e7d32;
@@ -226,7 +195,7 @@ footer {
   border-top: 2px solid #c8e6c9;
 }
 
-/* 动画效果 */
+/* 心跳动画，制造缓慢生长的安静的活力感 */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -239,6 +208,7 @@ footer {
   }
 }
 
+/* 卡片浮动动画，增加动感 */
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -250,16 +220,14 @@ footer {
     transform: translateY(0);
   }
 }
-
 .option-card {
   animation: float 6s ease-in-out infinite;
 }
-
 .option-card.field {
-  animation-delay: 0.5s;
+  animation-delay: 0.5s; /* 不同延迟，错落有致 */
 }
 
-/* 响应式设计 */
+/* 响应式：手机端时卡片改为全宽显示 */
 @media (max-width: 768px) {
   .options {
     flex-direction: column;
@@ -280,6 +248,7 @@ footer {
   }
 }
 
+/* 字体引用声明，方便项目中其他位置调用 */
 .exile-regular {
   font-family: "Exile", system-ui;
   font-weight: 400;

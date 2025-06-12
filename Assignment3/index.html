@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="home.css" />
-    <!-- 确保在 DOM 解析后再执行脚本 -->
     <script src="home.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,18 +13,20 @@
    
 </head>
 <body>
-    <!-- 背景装饰元素 -->
-    <i class="fas fa-leaf bg-leaf leaf-1"></i>
-    <i class="fas fa-seedling bg-leaf leaf-2"></i>
-    <i class="fas fa-leaf bg-leaf leaf-3"></i>
-    
     <div class="container">
         <header>
             <div class="logo">
                 <i class="fas fa-seedling logo-icon"></i>
                 <h1 class="logo-text">Pocket Garden</h1>
             </div>
+            <!-- 背景音乐按钮-->
             <div class="music-control" id="musicControl">
+                <img
+              width="45"
+              height="45"
+              src="https://img.icons8.com/pulsar-color/48/audio-file.png"
+              alt="music"
+            />
                 <i class="fas fa-volume-up"></i>
             </div>
         </header>
@@ -34,7 +35,7 @@
             <h1>Welcome To Pocket Garden</h1>
             <p>Cultivate your own digital botanical garden</p >
         </div>
-        
+        <!-- 网页主题介绍，引导用户体验 -->
         <div class="options">
             <div class="option-card pot" id="potOption">
                 <i class="fas fa-spa option-icon"></i>
@@ -49,14 +50,14 @@
             </div>
         </div>
     </div>
-    
+    <!-- 2种不同的种植模式选择，给用户更多新鲜感 -->
     <footer>
         <p>Pocket Garden &copy; 2023 | Cultivate your own digital botanical garden</p >
     </footer>
     
     <!-- 音频元素 -->
     <audio id="bgMusic" loop>
-        <source src="https://assets.codepen.io/4175254/nature-sounds.mp3" type="audio/mp3">
+        <source src="background.m4a" type="audio/mp3">
     </audio>
     
     

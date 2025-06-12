@@ -1,5 +1,3 @@
-/* flower1.css */
-
 /* 全局重置 */
 * {
   margin: 0;
@@ -11,9 +9,10 @@ body,
 html {
   height: 100%;
   font-family: "Arial Rounded MT Bold", "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+  background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%); /* 背景渐变 */
   overflow-x: hidden;
 }
+/* 用最基础的字体去设置边角文字效果 */
 
 h1 {
   font-family: "Exile", system-ui;
@@ -25,6 +24,7 @@ h1 {
   letter-spacing: 2px;
   font-weight: 800;
 }
+/* 使用了logo字体，虽然页面没有logo，但是通过使用代表性字体强调关联 */
 
 /* 切换侧边栏按钮 */
 #toggle-sidebar {
@@ -43,10 +43,14 @@ h1 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
+/* 给按钮设置阴影，给予2d图片3d感，让网页层次更丰富 */
+
 #toggle-sidebar:hover {
   background: #26a69a;
   transform: rotate(15deg);
 }
+/* 鼠标悬停时，按钮旋转，增强人机交互体验感 */
+
 .menu-icon {
   font-size: 28px;
   user-select: none;
@@ -68,9 +72,12 @@ h1 {
   padding-top: 80px;
   border-left: 4px solid #4db6ac;
 }
+
 #sidebar.open {
   transform: translateX(0);
 }
+/* 平移打开 */
+
 #sidebar-close {
   position: absolute;
   top: 15px;
@@ -88,10 +95,12 @@ h1 {
   justify-content: center;
   transition: all 0.2s;
 }
+
 #sidebar-close:hover {
   background: rgba(0, 0, 0, 0.25);
 }
 
+/* 侧边栏内容整体布局 */
 .sidebar-content {
   font-family: "Amatic SC", sans-serif;
   display: flex;
@@ -108,6 +117,7 @@ h1 {
   width: 90%;
   justify-content: space-between;
 }
+
 .sidebar-tools .icon-item {
   flex: 1;
   padding: 12px;
@@ -126,6 +136,7 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s, background 0.2s;
 }
+
 .icon-item:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.85);
@@ -159,6 +170,8 @@ h1 {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.85);
 }
+
+/* Seeds 下拉菜单布局 */
 .seed-dropdown {
   display: none;
   width: 90%;
@@ -176,7 +189,7 @@ h1 {
   padding: 6px;
 }
 
-/* 画廊和花盆区域（保持原样） */
+/* 画廊和花盆区域 */
 .gallery-container {
   position: relative;
   width: 90%;
@@ -201,7 +214,7 @@ h1 {
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
 }
 
-/* 生长和拖拽相关保持不变 */
+/* 生长和拖拽 */
 .plant-video {
   position: absolute;
   bottom: 0;
@@ -226,6 +239,8 @@ h1 {
     bottom: 100%;
   }
 }
+
+/* 视频结束定格帧样式 */
 .final-frame {
   position: absolute;
   bottom: 0;
@@ -237,12 +252,7 @@ h1 {
   z-index: 15;
 }
 
-/* 针对 p7.mp4 的微调，使视频贴近花盆底部 */
-/* 仅针对落入 p7.mp4 的植物视频 */
-.pot-item .plant-video[src*="p7.mp4"] {
-  bottom: 2px !important; /* 调整值看实际效果微调 */
-}
-
+/* 拖拽预览样式 */
 .seed-preview {
   position: absolute;
   width: 60px;
@@ -253,6 +263,8 @@ h1 {
   z-index: 9999;
   pointer-events: none;
 }
+
+/* 生长文本效果，给用户植物开始生长的精神暗示 */
 .growing-text {
   position: absolute;
   top: 50%;

@@ -1,16 +1,18 @@
-/* 全局重置 */
+/* 全局重置*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* 页面整体背景和字体设置：渐变背景提升视觉层次感 */
 body {
   font-family: sans-serif;
   background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
-  min-height: 100vh;
+  min-height: 100vh; /* 确保背景覆盖全屏高度 */
 }
 
-/* 返回按钮 */
+/* 返回按钮：固定左上角，符合常用网页思路，方便用户返回首页 */
 #back-btn {
   font-family: "Amatic SC", sans-serif;
   position: fixed;
@@ -29,7 +31,7 @@ body {
   background: rgba(255, 255, 255, 1);
 }
 
-/* 页面顶部 */
+/* 页面顶部，将标题与下面网格分开*/
 header {
   display: flex;
   justify-content: space-between;
@@ -48,18 +50,11 @@ header h1 {
   font-family: "Exile", system-ui;
   font-size: 48px;
   color: #333;
-  margin-left: 160px;
+  margin-left: 160px; /* 为返回按钮留出空间 */
   line-height: 1;
 }
-#music-btn {
-  background: none;
-  border: none;
-  font-size: 32px;
-  cursor: pointer;
-  outline: none;
-}
 
-/* 切换侧边栏按钮 */
+/* 切换侧边栏按钮：固定右上，高可见性 */
 #toggle-sidebar {
   position: fixed;
   top: 16px;
@@ -78,7 +73,7 @@ header h1 {
 }
 #toggle-sidebar:hover {
   background: #26a69a;
-  transform: rotate(15deg);
+  transform: rotate(15deg); /* 悬停动画提升体验 */
 }
 .menu-icon {
   font-size: 28px;
@@ -86,7 +81,7 @@ header h1 {
   user-select: none;
 }
 
-/* 侧边栏 */
+/* 侧边栏：隐藏时平移，打开时滑入 */
 #sidebar {
   position: fixed;
   top: 0;
@@ -102,7 +97,7 @@ header h1 {
   border-left: 4px solid #4db6ac;
 }
 #sidebar.open {
-  transform: translateX(0);
+  transform: translateX(0); /* 切换侧边栏可见状态 */
 }
 #sidebar-close {
   position: absolute;
@@ -125,6 +120,7 @@ header h1 {
   background: rgba(0, 0, 0, 0.25);
 }
 
+/* 侧边栏内容：垂直排列，留白清晰 */
 .sidebar-content {
   font-family: "Amatic SC", sans-serif;
   display: flex;
@@ -140,10 +136,11 @@ header h1 {
   justify-content: space-between;
 }
 .sidebar-tools .icon-item {
-  width: 90%; /* 与 Seeds 按钮同宽 */
+  width: 90%; /* 保持与下方按钮宽度一致 */
   padding: 12px;
 }
 
+/* 通用图标按钮：透明白背景+悬浮效果 */
 .icon-item {
   display: flex;
   flex-direction: column;
@@ -157,7 +154,7 @@ header h1 {
 }
 .icon-item:hover {
   background: rgba(255, 255, 255, 0.85);
-  transform: translateY(-5px);
+  transform: translateY(-5px); /* 悬浮时上移，提示可点击 */
 }
 .icon-item img {
   width: 48px;
@@ -171,7 +168,7 @@ header h1 {
   font-weight: 600;
 }
 
-/* Seeds 按钮 */
+/* Seeds 按钮和下拉：与 icon-item 保持一致，grid 布局 */
 .seed-toggle {
   display: flex;
   flex-direction: column;
@@ -195,7 +192,6 @@ header h1 {
   margin-top: 8px;
   font-size: 16px;
 }
-
 .seed-dropdown {
   display: none;
   width: 90%;
@@ -213,20 +209,20 @@ header h1 {
   padding: 6px;
 }
 
-/* 网格 */
+/* 网格布局：五列，自动行高200px，中间留白 */
 #grid-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 200px;
   gap: 10px;
   padding: 16px;
-  margin-top: 96px;
+  margin-top: 96px; /* 留出标题和侧边栏空间 */
   margin-left: 16px;
   margin-right: 16px;
 }
 .grid-cell {
   border: 2px dashed #aaa;
-  background: #fff;
+  background: #fff; /* 白色底，聚焦内容 */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -240,25 +236,7 @@ header h1 {
   background: transparent;
 }
 
-.exile-regular {
-  font-family: "Exile", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.berkshire-swash-regular {
-  font-family: "Berkshire Swash", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.amatic-sc-bold {
-  font-family: "Amatic SC", sans-serif;
-  font-weight: 900;
-  font-style: bold;
-}
-
-/* 全屏天气视频覆盖 */
+/* 全屏天气视频覆盖：非交互，仅视觉效果 */
 #weather-video {
   position: fixed;
   top: 0;
@@ -266,7 +244,7 @@ header h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 100; /* 确保在花盆之下，但在背景之上 */
-  pointer-events: none; /* 不阻止页面其它交互 */
+  z-index: 100; /* 在内容之下，背景之上 */
+  pointer-events: none;
   background: transparent;
 }
