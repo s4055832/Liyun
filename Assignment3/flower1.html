@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Freeform 画廊 本地复刻</title>
+    <title>Freeform Gallery Local Replica</title>
     <link rel="stylesheet" href="flower1.css" />
     <script src="flower1.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,18 +22,18 @@
       loop
       playsinline
     ></video>
-    <!-- 这里插入视频为后面的按钮做准备 -->
+    <!-- Insert video here to prepare for the buttons below -->
     <h1>My Pots</h1>
     <a id="back-btn" href="index.html">Back</a>
-    <!-- 返回主页的按钮，方便用户随时回到主页或者目录 -->
-    <!-- 菜单切换按钮 -->
+    <!-- Back to homepage button for easy navigation -->
+    <!-- Menu toggle button -->
     <div id="toggle-sidebar"><span class="menu-icon">☰</span></div>
 
-    <!-- 侧边栏 -->
+    <!-- Sidebar -->
     <div id="sidebar">
       <div id="sidebar-close">×</div>
       <div class="sidebar-content">
-        <!-- 顶部工具行：Music & Weather -->
+        <!-- Top toolbar: Music & Weather -->
         <div class="sidebar-tools">
           <div class="icon-item" id="sidebar-music-btn" draggable="false">
             <img
@@ -54,8 +54,8 @@
             <span>Weather</span>
           </div>
         </div>
-        <!-- 两个切换功能的按钮放在一起与下面其他拖动功能的按钮分开，表现区别 -->
-        <!-- 铲除、水、Seeds -->
+        <!-- Group the two toggle buttons separately from the draggable action buttons to distinguish their functions -->
+        <!-- Remove, Water, Seeds -->
         <div
           class="icon-item remove-icon"
           draggable="true"
@@ -89,31 +89,31 @@
         </div>
         <div id="seed-dropdown" class="seed-dropdown">
           <div class="icon-item seed-icon" draggable="true" data-mp4="p1.mp4">
-            <img src="p1.PNG" alt="种子1" />
+            <img src="p1.PNG" alt="Seed 1" />
           </div>
           <div class="icon-item seed-icon" draggable="true" data-mp4="p3.mp4">
-            <img src="p3.png" alt="种子3" />
+            <img src="p3.png" alt="Seed 3" />
           </div>
           <div class="icon-item seed-icon" draggable="true" data-mp4="p4.mp4">
-            <img src="p4.png" alt="种子4" />
+            <img src="p4.png" alt="Seed 4" />
           </div>
           <div class="icon-item seed-icon" draggable="true" data-mp4="p5.mp4">
-            <img src="p5.png" alt="种子5" />
+            <img src="p5.png" alt="Seed 5" />
           </div>
           <div class="icon-item seed-icon" draggable="true" data-mp4="p6.mp4">
-            <img src="p6.png" alt="种子6" />
+            <img src="p6.png" alt="Seed 6" />
           </div>
           <div class="icon-item seed-icon" draggable="true" data-mp4="p7.mp4">
-            <img src="p7.png" alt="种子7" />
+            <img src="p7.png" alt="Seed 7" />
           </div>
           <div class="icon-item seed-icon" draggable="true" data-mp4="p8.mp4">
-            <img src="p8.png" alt="种子8" />
+            <img src="p8.png" alt="Seed 8" />
           </div>
         </div>
       </div>
     </div>
-    <!-- 种子选取列表，通过图片展示种子最终培育效果 -->
-    <!-- 画廊区域-->
+    <!-- Seed selection list, using images to show the final planting effects -->
+    <!-- Gallery area -->
     <div class="gallery-container">
       <div
         class="pot-item"
@@ -188,6 +188,6 @@
         <img src="Pot 6.PNG" alt="Pot 6" />
       </div>
     </div>
-    <!-- 这部分花盆是在cargo里面排列好位置以及重叠关系然后复制cargo生成的网站上花盆的位置关系数据到vsc -->
+    <!-- These pot positions and stacking order were arranged in Cargo, and the data was copied from the Cargo-generated site into VSC -->
   </body>
 </html>

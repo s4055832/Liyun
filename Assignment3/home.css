@@ -4,22 +4,22 @@
   box-sizing: border-box;
 }
 
-/* 页面整体背景和字体*/
+/* Overall page background and font */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(
     135deg,
     #e0f7fa 0%,
     #bbdefb 100%
-  ); /*渐变背景提升视觉层次感 */
-  min-height: 100vh; /* 覆盖全屏 */
-  display: flex; /* 使得容器垂直居中或排列 */
+  ); /* Gradient background to enhance visual depth */
+  min-height: 100vh; /* Cover full screen */
+  display: flex; /* Allows container to center vertically or arrange flex items */
   flex-direction: column;
-  overflow-x: hidden; /* 防止水平滚动条 */
-  position: relative; /* 便于放置绝对定位的背景元素 */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  position: relative; /* Enables placement of absolutely positioned background elements */
 }
 
-/* 主容器：限制内容宽度，居中显示 */
+/* Main container: limit content width and center */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -27,11 +27,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 10; /* 高于背景，但低于顶部导航 */
+  z-index: 10; /* Above background but below top navigation */
   position: relative;
 }
 
-/* 顶部区域*/
+/* Top area */
 header {
   width: 100%;
   display: flex;
@@ -40,17 +40,17 @@ header {
   padding: 20px 0;
 }
 
-/* Logo 区：图标 + 文本 */
+/* Logo area: icon + text */
 .logo {
   display: flex;
   align-items: center;
-  gap: 15px; /* 图标与文字间距 */
+  gap: 15px; /* Spacing between icon and text */
 }
 
 .logo-icon {
   font-size: 2.5rem;
   color: #4caf50;
-  animation: pulse 2s infinite; /* 呼吸动画，突出标志 */
+  animation: pulse 2s infinite; /* Pulse animation to highlight the logo */
 }
 .logo-text {
   font-family: "Exile", system-ui;
@@ -59,11 +59,11 @@ header {
   background: linear-gradient(45deg, #2e7d32, #4caf50);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent; /* 渐变文字效果 */
+  color: transparent; /* Gradient text effect */
   letter-spacing: 1px;
 }
 
-/* 音乐控制按钮：圆形、悬浮效果 */
+/* Music control button: circular with hover effect */
 .music-control {
   background: rgba(255, 255, 255, 0.8);
   width: 60px;
@@ -75,10 +75,10 @@ header {
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  z-index: 20; /* 置于其他元素之上 */
+  z-index: 20; /* Positioned above other elements */
 }
 .music-control:hover {
-  transform: scale(1.1); /* 悬停放大提示可交互 */
+  transform: scale(1.1); /* Enlarge on hover to indicate interactiveness */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 0.95);
 }
@@ -87,7 +87,7 @@ header {
   color: #4caf50;
 }
 
-/* 中心欢迎文案 */
+/* Centered hero text */
 .hero {
   text-align: center;
   margin: 40px 0;
@@ -108,7 +108,7 @@ header {
   margin-bottom: 30px;
 }
 
-/* 选项卡区域：卡片水平排列，响应式折行 */
+/* Options section: horizontal card layout with responsive wrapping */
 .options {
   display: flex;
   justify-content: center;
@@ -131,10 +131,10 @@ header {
   transition: all 0.4s ease;
   cursor: pointer;
   position: relative;
-  overflow: hidden; /* 保证装饰线在内部 */
+  overflow: hidden; /* Ensure decorative line stays inside */
 }
 .option-card:hover {
-  transform: translateY(-15px) scale(1.03); /* 悬浮上移并微放大 */
+  transform: translateY(-15px) scale(1.03); /* Lift up and slightly scale on hover */
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.95);
 }
@@ -145,7 +145,11 @@ header {
   left: 0;
   width: 100%;
   height: 8px;
-  background: linear-gradient(90deg, #4caf50, #81c784); /* 卡片顶部装饰线 */
+  background: linear-gradient(
+    90deg,
+    #4caf50,
+    #81c784
+  ); /* Decorative line at the top of the card */
 }
 .option-icon {
   font-size: 6rem;
@@ -166,7 +170,7 @@ header {
   text-align: center;
   line-height: 1.6;
 }
-/* 特定卡片的背景叠加装饰 */
+/* Background overlay decoration for specific cards */
 .option-card.pot {
   background: linear-gradient(
       to bottom,
@@ -184,9 +188,9 @@ header {
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="none" stroke="%2381c784" stroke-width="2" stroke-dasharray="5,5"/></svg>');
 }
 
-/* 页脚固定在底部 */
+/* Footer fixed at the bottom */
 footer {
-  margin-top: auto; /* 占据剩余空间，固定底部 */
+  margin-top: auto; /* Occupy remaining space to fix at bottom */
   text-align: center;
   padding: 25px;
   color: #2e7d32;
@@ -195,7 +199,7 @@ footer {
   border-top: 2px solid #c8e6c9;
 }
 
-/* 心跳动画，制造缓慢生长的安静的活力感 */
+/* Pulse animation for a slow, growing, calm vitality effect */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -208,7 +212,7 @@ footer {
   }
 }
 
-/* 卡片浮动动画，增加动感 */
+/* Floating animation for cards to enhance dynamism */
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -224,10 +228,10 @@ footer {
   animation: float 6s ease-in-out infinite;
 }
 .option-card.field {
-  animation-delay: 0.5s; /* 不同延迟，错落有致 */
+  animation-delay: 0.5s; /* Different delay for a staggered effect */
 }
 
-/* 响应式：手机端时卡片改为全宽显示 */
+/* Responsive: full-width cards on mobile */
 @media (max-width: 768px) {
   .options {
     flex-direction: column;
@@ -248,7 +252,7 @@ footer {
   }
 }
 
-/* 字体引用声明，方便项目中其他位置调用 */
+/* Font declarations for reuse elsewhere in the project */
 .exile-regular {
   font-family: "Exile", system-ui;
   font-weight: 400;

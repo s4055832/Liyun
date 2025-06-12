@@ -1,34 +1,40 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // === 天气视频切换逻辑 ===
-  // 获取页面全屏播放的 weatherVideo 元素，用于切换晴天/雨天视频
+  // === Weather video toggle logic ===
+  // Get the fullscreen weatherVideo element for toggling between sunny and rainy videos
   var weatherVideo = document.getElementById("weather-video");
-  var isSunny = true; // 状态标志：true 初始状态为晴天，需要切换到雨天
+  // State flag: true for initial sunny state, toggles to rain
+  var isSunny = true;
 
-  // 获取侧边栏的 Weather 按钮
+  // Get the sidebar Weather button
   var weatherBtn = document.getElementById("toggle-weather-btn");
   weatherBtn.addEventListener("click", function (e) {
-    e.stopPropagation(); // 阻止事件冒泡，以免触发关闭侧边栏的逻辑
+    // Prevent event bubbling to avoid triggering sidebar close logic
+    e.stopPropagation();
     if (isSunny) {
-      weatherVideo.src = "rain.mp4"; // 切换到雨天
+      // Switch to rain video
+      weatherVideo.src = "rain.mp4";
     } else {
-      weatherVideo.src = "sun.mp4"; // 切换回晴天
+      // Switch back to sunny video
+      weatherVideo.src = "sun.mp4";
     }
     weatherVideo.play();
-    isSunny = !isSunny; // 翻转状态标志，下次点击反向切换
+    // Toggle the state flag for next click
+    isSunny = !isSunny;
   });
 
-  // === 背景音乐播放控制 ===
-  // 使用 Audio 对象加载背景音乐文件，便于统一暂停/播放控制
+  // === Background music playback control ===
+  // Load background music file using Audio object for unified play/pause control
   var bgMusic = new Audio("background.m4a");
-  bgMusic.loop = true; // 循环播放
+  // Loop playback
+  bgMusic.loop = true;
   bgMusic.play().catch(function () {
-    // 某些浏览器限制自动播放，提醒用户手动点击
+    // Some browsers block autoplay, warn user to click manually
     console.warn(
       "Autoplay is blocked, please click the Music button to start the audio."
-    ); //来自chatgpt的优化方案
+    ); // Optimization from ChatGPT
   });
 
-  // 获取侧边栏 Music 按钮，点击时切换播放/暂停
+  // Get the sidebar Music button, toggle play/pause on click
   var sidebarMusicBtn = document.getElementById("sidebar-music-btn");
   sidebarMusicBtn.addEventListener("click", function (e) {
     e.stopPropagation();
@@ -39,35 +45,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // === 侧边栏打开/关闭逻辑 ===
+  // === Sidebar open/close logic ===
   var toggleSidebarBtn = document.getElementById("toggle-sidebar");
   var sidebar = document.getElementById("sidebar");
   var sidebarCloseBtn = document.getElementById("sidebar-close");
 
-  // 点击菜单图标，切换，控制侧边栏平移
+  // Click menu icon to toggle sidebar sliding
   toggleSidebarBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     sidebar.classList.toggle("open");
   });
 
-  // 点击侧边栏内的关闭按钮，移除 open 类名
+  // Click close button inside sidebar to remove 'open' class
   sidebarCloseBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     sidebar.classList.remove("open");
   });
 
-  // 点击页面任何非侧边栏区域时自动关闭侧边栏
+  // Click outside sidebar to automatically close it
   document.addEventListener("click", function (e) {
     if (!sidebar.contains(e.target) && !toggleSidebarBtn.contains(e.target)) {
       sidebar.classList.remove("open");
     }
   });
 
-  // Seeds 下拉菜单逻辑
+  // === Seeds dropdown menu logic ===
   var seedToggleBtn = document.getElementById("seed-toggle-btn");
   var seedDropdown = document.getElementById("seed-dropdown");
 
-  // 点击 Seeds 按钮显示或隐藏下拉面板
+  // Click Seeds button to show or hide dropdown panel
   seedToggleBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     if (seedDropdown.style.display === "grid") {
@@ -77,23 +83,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 点击其他地方时隐藏下拉面板
+  // Hide dropdown panel when clicking elsewhere
   document.addEventListener("click", function (e) {
     if (!seedToggleBtn.contains(e.target) && !seedDropdown.contains(e.target)) {
       seedDropdown.style.display = "none";
     }
   });
 
-  // 拖拽与生长效果
+  // === Drag and growth effects ===
   var seedIcons = document.querySelectorAll(".seed-icon");
   var potItems = document.querySelectorAll(".pot-item");
 
-  // 为每个种子图标绑定 dragstart，传递视频路径并创建拖拽预览
+  // Bind dragstart to each seed icon, pass video path and create drag preview
   seedIcons.forEach(function (icon) {
     icon.addEventListener("dragstart", function (e) {
-      e.dataTransfer.setData("text/plain", icon.dataset.mp4); // 存储要播放的 mp4 路径
+      // Store the mp4 path to play
+      e.dataTransfer.setData("text/plain", icon.dataset.mp4);
 
-      // 创建一个预览元素，提高拖拽 UX
+      // Create a preview element to enhance drag UX
       var preview = document.createElement("div");
       preview.className = "seed-preview";
       var img = document.createElement("img");
@@ -107,23 +114,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // 为每个花盆绑定 dragover/drop，实现视频播放和生长动画
+  // Bind dragover/drop to each pot to enable video playback and growth animation
   potItems.forEach(function (pot) {
     pot.addEventListener("dragover", function (e) {
-      e.preventDefault();
-    }); // 允许 drop
+      e.preventDefault(); // Allow drop
+    });
     pot.addEventListener("drop", function (e) {
       e.preventDefault();
       var mp4Url = e.dataTransfer.getData("text/plain");
       if (!mp4Url) return;
 
-      // 清除旧的视频元素和定格图
+      // Remove old video element and final frame
       var oldVideo = pot.querySelector(".plant-video");
       if (oldVideo) oldVideo.remove();
       var oldFrame = pot.querySelector(".final-frame");
       if (oldFrame) oldFrame.remove();
 
-      // 添加生长文字，增强视觉反馈
+      // Add growing text for visual feedback
       var txt = document.createElement("div");
       txt.className = "growing-text";
       txt.textContent = "🌱 Growing...";
@@ -132,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         txt.remove();
       }, 3000);
 
-      // 创建并播放植物生长视频
+      // Create and play plant growth video
       var video = document.createElement("video");
       video.src = mp4Url;
       video.className = "plant-video";
@@ -140,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
       video.muted = true;
       video.playsInline = true;
 
-      // 视频结束后定格在最后一帧，保留视觉效果，不用切换到png.借鉴自chatgpt
+      // On video end, capture final frame to preserve visual, no PNG swap. Inspired by ChatGPT
       video.addEventListener("ended", function () {
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
