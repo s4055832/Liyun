@@ -1,4 +1,31 @@
-/* sidebar */
+/* flower1.css */
+
+/* 全局重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "Arial Rounded MT Bold", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  margin: 25px 0;
+  font-size: 3.2rem;
+  color: #2d5aa6;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+/* 切换侧边栏按钮 */
 #toggle-sidebar {
   position: fixed;
   top: 20px;
@@ -21,10 +48,11 @@
 }
 .menu-icon {
   font-size: 28px;
-  color: white;
   user-select: none;
+  color: white;
 }
 
+/* 侧边栏 */
 #sidebar {
   position: fixed;
   top: 0;
@@ -71,7 +99,7 @@
   padding: 20px 0;
 }
 
-/* 顶部工具行 */
+/* 顶部工具行：Music & Weather */
 .sidebar-tools {
   display: flex;
   gap: 10px;
@@ -81,10 +109,9 @@
 .sidebar-tools .icon-item {
   flex: 1;
   padding: 12px;
-  width: 90%;
 }
 
-/* 通用按钮 */
+/* 通用图标按钮 */
 .icon-item {
   display: flex;
   flex-direction: column;
@@ -113,7 +140,7 @@
   font-weight: 600;
 }
 
-/* Seeds 下拉 */
+/* Seeds 按钮及下拉 */
 .seed-toggle {
   display: flex;
   flex-direction: column;
@@ -145,4 +172,99 @@
 .seed-dropdown .icon-item {
   width: 48px;
   padding: 6px;
+}
+
+/* 画廊和花盆区域（保持原样） */
+.gallery-container {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 600px;
+  margin: 400px auto;
+  border-radius: 20px;
+  overflow: visible;
+}
+.pot-item {
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1.2);
+  transform-origin: bottom center;
+}
+.pot-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+}
+
+/* 生长和拖拽相关保持不变 */
+.plant-video {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  animation: grow-up 1.5s ease-out forwards;
+}
+@keyframes grow-up {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.2);
+    bottom: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    bottom: 100%;
+  }
+}
+.final-frame {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  pointer-events: none;
+  z-index: 15;
+}
+.seed-preview {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  pointer-events: none;
+}
+.growing-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #2e7d32;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  z-index: 30;
+  animation: text-pop 1s ease-out forwards;
+}
+@keyframes text-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -30%);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%);
+  }
 }
