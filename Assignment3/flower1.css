@@ -251,7 +251,7 @@ h1 {
 /* Final Frame Style After Video Ends */
 .final-frame {
   position: absolute;
-  bottom: 0;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
