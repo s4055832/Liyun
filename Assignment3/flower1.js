@@ -1,5 +1,3 @@
-// flower1.js
-
 document.addEventListener("DOMContentLoaded", () => {
   // 侧边栏开关
   const toggleSidebarBtn = document.getElementById("toggle-sidebar");
