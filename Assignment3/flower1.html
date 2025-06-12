@@ -5,22 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Freeform 画廊 本地复刻</title>
     <link rel="stylesheet" href="flower1.css" />
-    <!-- 确保在 DOM 解析后再执行脚本 -->
     <script src="flower1.js" defer></script>
   </head>
   <body>
     <h1>My Pots</h1>
 
-    <!-- 1. 菜单图标（右上角） -->
-    <div id="toggle-sidebar">
-      <span class="menu-icon">☰</span>
-    </div>
+    <!-- 菜单切换按钮 -->
+    <div id="toggle-sidebar"><span class="menu-icon">☰</span></div>
 
-    <!-- 2. 侧边栏容器 -->
+    <!-- 侧边栏 -->
     <div id="sidebar">
-      <!-- <div id="sidebar-close">×</div> -->
+      <div id="sidebar-close">×</div>
       <div class="sidebar-content">
-        <div class="icon-item">
+        <!-- 顶部工具行：Music & Weather -->
+        <div class="sidebar-tools">
+          <div class="icon-item" id="sidebar-music-btn" draggable="false">
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/pulsar-color/48/audio-file.png"
+              alt="music"
+            />
+            <span>Music</span>
+          </div>
+          <div class="icon-item" id="toggle-weather-btn" draggable="false">
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/pulsar-color/48/cloud.png"
+              alt="cloud"
+            />
+            <span>Weather</span>
+          </div>
+        </div>
+
+        <!-- 铲除、水、Seeds -->
+        <div
+          class="icon-item remove-icon"
+          draggable="true"
+          data-action="remove"
+        >
+          <img
+            width="48"
+            height="48"
+            src="https://img.icons8.com/pulsar-color/48/spade.png"
+            alt="spade"
+          />
+          <span>铲除</span>
+        </div>
+        <div class="icon-item" draggable="false">
           <img
             width="48"
             height="48"
@@ -29,43 +62,43 @@
           />
           <span>Water</span>
         </div>
-
-        <div class="seed-section">
-          <button id="seed-toggle-btn" class="seed-btn">🌱 Seeds</button>
-          <div id="seed-dropdown" class="seed-dropdown">
-            <!-- 关键：下面的 data-mp4 要指向你在本地 / VSC 同目录下的 p2.mp4 -->
-            <div class="seed-icon" draggable="true" data-mp4="p1.mp4">
-              <img src="p1.PNG" alt="种子1" />
-            </div>
-            <!-- <div class="seed-icon" draggable="true" data-mp4="p2.mp4">
-              <img src="p2.PNG" alt="种子2" />
-            </div> -->
-            <div class="seed-icon" draggable="true" data-mp4="p3.mp4">
-              <img src="p3.png" alt="种子3" />
-            </div>
-            <div class="seed-icon" draggable="true" data-mp4="p4.mp4">
-              <img src="p4.png" alt="种子4" />
-            </div>
-            <div class="seed-icon" draggable="true" data-mp4="p5.mp4">
-              <img src="p5.png" alt="种子5" />
-            </div>
-            <div class="seed-icon" draggable="true" data-mp4="p6.mp4">
-              <img src="p6.png" alt="种子6" />
-            </div>
-            <div class="seed-icon" draggable="true" data-mp4="p7.mp4">
-              <img src="p7.png" alt="种子7" />
-            </div>
-            <div class="seed-icon" draggable="true" data-mp4="p8.mp4">
-              <img src="p8.png" alt="种子8" />
-            </div>
+        <div class="seed-toggle" id="seed-toggle-btn">
+          <img
+            width="48"
+            height="48"
+            src="https://img.icons8.com/pulsar-color/48/sprout.png"
+            alt="sprout"
+          />
+          <span>Seeds</span>
+        </div>
+        <div id="seed-dropdown" class="seed-dropdown">
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p1.mp4">
+            <img src="p1.PNG" alt="种子1" />
+          </div>
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p3.mp4">
+            <img src="p3.png" alt="种子3" />
+          </div>
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p4.mp4">
+            <img src="p4.png" alt="种子4" />
+          </div>
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p5.mp4">
+            <img src="p5.png" alt="种子5" />
+          </div>
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p6.mp4">
+            <img src="p6.png" alt="种子6" />
+          </div>
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p7.mp4">
+            <img src="p7.png" alt="种子7" />
+          </div>
+          <div class="icon-item seed-icon" draggable="true" data-mp4="p8.mp4">
+            <img src="p8.png" alt="种子8" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ==================== 花盆区域（gallery-container） ==================== -->
+    <!-- 画廊区域：保持不变 -->
     <div class="gallery-container">
-      <!-- 例：第一个花盆 -->
       <div
         class="pot-item"
         style="
@@ -78,7 +111,6 @@
       >
         <img src="Pot 5.PNG" alt="Pot 1" />
       </div>
-      <!-- 其他 pot-item 块与之前保持一致，只要确保在它们内部可以插入 <video> 和 <img class="final-frame"> -->
       <div
         class="pot-item"
         style="

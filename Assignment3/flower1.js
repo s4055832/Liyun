@@ -122,3 +122,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+        // 音乐按钮
+        const musicBtn = document.getElementById("music-btn");
+        const bgMusic = document.getElementById("bg-music");
+        musicBtn.addEventListener("click", () => {
+          if (bgMusic.paused) {
+            bgMusic.play();
+            musicBtn.textContent = "🔊";
+          } else {
+            bgMusic.pause();
+            musicBtn.textContent = "🔇";
+          }
+        })
